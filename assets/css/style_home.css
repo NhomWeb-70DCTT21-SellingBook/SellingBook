@@ -303,6 +303,7 @@
     border-radius: 4px;
     padding: 0 12px;
     color: var(--background-content-color);
+    border: none;
     cursor: pointer;
     transition: .2s;
 }
