@@ -5,10 +5,10 @@ var path = 'http://localhost/LearnPHP/SellingBook/PHP/';
 
 var page = 1, size = 20;
 
-if(GetURLParameter('page') != -1) {
+if (GetURLParameter('page') != -1) {
     page = parseInt(GetURLParameter('page'));
 }
-if(GetURLParameter('size') != -1) {
+if (GetURLParameter('size') != -1) {
     size = parseInt(GetURLParameter('size'));
 }
 
@@ -47,11 +47,11 @@ function getDataCate() {
 function formatBookID(id) {
     var tmp = id;
     var count = 0;
-    while(tmp > 0) {
+    while (tmp > 0) {
         count++;
-        tmp = (tmp - tmp%10)/10;
+        tmp = (tmp - tmp % 10) / 10;
     }
-    while(4 - count > 0) {
+    while (4 - count > 0) {
         id = '0' + id;
         count++;
     }
@@ -61,16 +61,16 @@ function formatBookID(id) {
 
 // Show modal input
 function showEdit(id) {
-    var book = books.find(function(value) {
+    var book = books.find(function (value) {
         return value.id == id;
     });
 
     var modalDOM = document.querySelector('.modal__input');
 
-    if(modalDOM.classList.contains('modal__input-create')) {
+    if (modalDOM.classList.contains('modal__input-create')) {
         modalDOM.classList.remove('modal__input-create');
     }
-    if(!modalDOM.classList.contains('modal__input-edit')) {
+    if (!modalDOM.classList.contains('modal__input-edit')) {
         modalDOM.classList.add('modal__input-edit');
     }
 
@@ -89,10 +89,10 @@ function showEdit(id) {
 function showCreate() {
     var modalDOM = document.querySelector('.modal__input');
 
-    if(modalDOM.classList.contains('modal__input-edit')) {
+    if (modalDOM.classList.contains('modal__input-edit')) {
         modalDOM.classList.remove('modal__input-edit');
     }
-    if(!modalDOM.classList.contains('modal__input-create')) {
+    if (!modalDOM.classList.contains('modal__input-create')) {
         modalDOM.classList.add('modal__input-create');
     }
 
@@ -112,8 +112,8 @@ function loadListBooks() {
     var listBooksDOM = document.querySelector('.app-container-content__list tbody');
     listBooksDOM.innerHTML = '';
 
-    books.forEach(function(value) {
-        var cate = categories.find(function(cate) {
+    books.forEach(function (value) {
+        var cate = categories.find(function (cate) {
             return cate.id == value.id_danhmuc;
         });
 
@@ -155,7 +155,7 @@ function loadListCate() {
     itemFirst.innerText = '--Chọn danh mục sách--';
     cateDOM.appendChild(itemFirst);
 
-    categories.forEach(function(value) {
+    categories.forEach(function (value) {
         var item = document.createElement('option');
         item.value = value.id;
         item.innerText = value.ten_danhmuc;
@@ -182,8 +182,8 @@ function loadPagination() {
 }
 
 function loadPaginationToView(numberBook) {
-    var tmp = (numberBook - numberBook%size)/size; // Chia lay nguyen
-    var numberPage = (numberBook/size) > tmp ? tmp + 1 : tmp;
+    var tmp = (numberBook - numberBook % size) / size; // Chia lay nguyen
+    var numberPage = (numberBook / size) > tmp ? tmp + 1 : tmp;
     var pageDOM = document.querySelector('.app-content__pagination');
     pageDOM.innerHTML = `
     <a href="admin.html?page=1&size=${size}" class="app-content-pagination__first-page">Về trang đầu</a>
@@ -191,11 +191,11 @@ function loadPaginationToView(numberBook) {
     `;
 
     var from, to;
-    if(page <= 3) {
+    if (page <= 3) {
         from = 1;
         to = 5;
     }
-    else if(page + 2 > numberPage) {
+    else if (page + 2 > numberPage) {
         from = numberPage - 4;
         to = numberPage;
     }
@@ -203,13 +203,13 @@ function loadPaginationToView(numberBook) {
         from = page - 2;
         to = page + 2;
     }
-    for(let i = from; i <= to; i++) {
+    for (let i = from; i <= to; i++) {
         pageDOM.innerHTML += `
         <a href="admin.html?page=${i}&size=${size}" class="app-content-pagination__item-page">${i}</a>
         `;
-        if(i == numberPage) break;
+        if (i == numberPage) break;
     }
-    if(to < numberPage) {
+    if (to < numberPage) {
         pageDOM.innerHTML += `
         <a href="admin.html?page=${numberPage}&size=${size}" class="app-content-pagination__item-page">...</a>
         `;
@@ -221,8 +221,8 @@ function loadPaginationToView(numberBook) {
     `;
 
     var arr = document.querySelectorAll('.app-content-pagination__item-page');
-    arr.forEach(function(value) {
-        if(value.innerHTML == page) {
+    arr.forEach(function (value) {
+        if (value.innerHTML == page) {
             value.classList.add('current-page');
         }
     })
@@ -240,7 +240,7 @@ function editBook(method) {
         giam_gia: document.getElementById('book-sale').value,
         so_luong: document.getElementById('book-quantity').value,
         mo_ta: document.getElementById('book-description').value.trim(),
-        anh: ''
+        anh: document.querySelector('.modal-input__img img').src.split('/')[7]
     }
 
     var http = new XMLHttpRequest();
@@ -251,7 +251,36 @@ function editBook(method) {
 
     http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            
+            console.log(this.responseText);
+            if (method == 'POST') {
+                showToast({
+                    message: `Bạn đã thêm sách thành công: ${book.ten_sach}`,
+                    type: 'success',
+                    duration: 2000
+                });
+            }
+            else if (method == 'PUT') {
+                showToast({
+                    message: `Bạn đã cập nhật sách thành công: ${book.ten_sach}`,
+                    type: 'success',
+                    duration: 2000
+                });
+            }
+            else {
+                showToast({
+                    message: `Bạn đã xóa sách thành công: ${book.ten_sach}`,
+                    type: 'error',
+                    duration: 2000
+                });
+            }
+            getDataBook();
+        }
+        else if (this.status != 200) {
+            showToast({
+                message: `Có lỗi sảy ra! Vui lòng thử lại`,
+                type: 'error',
+                duration: 2000
+            });
         }
     }
 }

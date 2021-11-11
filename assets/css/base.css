@@ -1,19 +1,14 @@
 :root {
     --primary-color: #f97d00;
     --secondary-color: #1d9d74;
-
     --background-header-color: #e7e7e7;
     --background-content-color: #f8f8f8;
-
     --text-color: #333;
     --text-color-light: #666;
-
     --white-color: #fff;
     --black-color: #000;
     --red-color: #ff0000;
-
     --border-color: #bdbdbd;
-    
     --header-height: 118px;
 }
 
@@ -29,7 +24,8 @@
 html {
     font-family: 'Poppins', sans-serif;
     font-size: 62.5%;
-    line-height: 2rem; /* 20px */
+    line-height: 2rem;
+    /* 20px */
     color: var(--text-color);
 }
 
@@ -38,22 +34,23 @@ html {
 }
 
 /* Animation */
+
 @keyframes GrowSimple {
-    from{
+    from {
         opacity: 0;
         transform: scale(0);
     }
-    to{
+    to {
         opacity: 1;
         transform: scale(1);
     }
 }
 
 @keyframes FadeIn {
-    from{
+    from {
         opacity: 0;
     }
-    to{
+    to {
         opacity: 1;
     }
 }
@@ -104,6 +101,7 @@ html {
 }
 
 /* Modal */
+
 .modal {
     position: fixed;
     top: 0;
@@ -146,8 +144,7 @@ html {
     gap: 0 8px;
 }
 
-.modal-dialog__btn-yes,
-.modal-dialog__btn-no {
+.modal-dialog__btn-yes, .modal-dialog__btn-no {
     display: block;
     flex: 1;
     background-color: var(--white-color);
@@ -161,12 +158,12 @@ html {
     cursor: pointer;
 }
 
-.modal-dialog__btn-yes:hover,
-.modal-dialog__btn-no:hover {
+.modal-dialog__btn-yes:hover, .modal-dialog__btn-no:hover {
     background-color: rgba(255, 255, 255, .8);
 }
 
 /* Modal input */
+
 .modal__input {
     width: 90%;
     max-width: 800px;
@@ -182,12 +179,12 @@ html {
     animation: FadeIn .3s ease;
 }
 
-.modal-input__text > h2 {
+.modal-input__text>h2 {
     font-size: 1.6rem;
     line-height: 2rem;
 }
 
-.modal-input__text > p {
+.modal-input__text>p {
     font-size: 1.2rem;
     line-height: 2rem;
 }
@@ -206,12 +203,12 @@ html {
     width: 100%;
 }
 
-.modal-input__group > i {
+.modal-input__group>i {
     width: 42px;
     text-align: center;
 }
 
-.modal-input__group > input, select, textarea {
+.modal-input__group>input, select, textarea {
     background-color: transparent;
     flex: 1;
     height: 100%;
@@ -221,12 +218,11 @@ html {
     color: currentColor;
 }
 
-.modal-input__group > textarea {
+.modal-input__group>textarea {
     padding: 8px 0;
 }
 
-.modal-input__group > textarea::placeholder,
-.modal-input__group > input::placeholder {
+.modal-input__group>textarea::placeholder, .modal-input__group>input::placeholder {
     color: currentColor;
 }
 
@@ -242,16 +238,16 @@ html {
     gap: 16px 0;
 }
 
-.modal-input__img > img {
+.modal-input__img>img {
     width: 120px;
     border: 1px solid var(--white-color);
 }
 
-.modal-input__img > span {
+.modal-input__img>span {
     border: 1px solid var(--white-color);
 }
 
-.modal-input__img > p {
+.modal-input__img>p {
     font-size: 1.2rem;
 }
 
@@ -261,9 +257,7 @@ html {
     gap: 0 4px;
 }
 
-.modal-input__btn > a,
-.modal-input__btn > button,
-.modal-input__btn > span {
+.modal-input__btn>a, .modal-input__btn>button, .modal-input__btn>span {
     display: block;
     width: 100%;
     background-color: var(--white-color);
@@ -281,7 +275,9 @@ html {
     cursor: pointer;
 }
 
-.modal-input__btn > span:hover {
+.modal-input__btn>a:hover, 
+.modal-input__btn>button:hover, 
+.modal-input__btn>span:hover {
     background-color: rgba(255, 255, 255, .2);
     color: var(--white-color);
 }
@@ -294,8 +290,8 @@ html {
     display: none;
 }
 
-
 /* Button */
+
 .app__btn {
     display: inline-block;
     background-color: var(--primary-color);
@@ -312,9 +308,8 @@ html {
 }
 
 /* Content Linker */
-.app-content__linker {
-    
-}
+
+.app-content__linker {}
 
 .app-content__linker-wrapper {
     height: 42px;
@@ -342,6 +337,7 @@ html {
 }
 
 /* Toast */
+
 .toast {
     position: fixed;
     bottom: 60px;
@@ -417,6 +413,7 @@ html {
 }
 
 /* Content Pagination */
+
 .app-content__pagination {
     margin: 12px 0;
     background-color: var(--white-color);
@@ -436,9 +433,7 @@ html {
     white-space: nowrap;
 }
 
-.current-page,
-.app-content-pagination__first-page,
-.app-content-pagination__last-page {
+.current-page, .app-content-pagination__first-page, .app-content-pagination__last-page {
     position: relative;
     background-color: var(--primary-color);
     color: var(--white-color) !important;
@@ -446,8 +441,7 @@ html {
     padding: 0 4px;
 }
 
-.app-content-pagination__last-page::before,
-.app-content-pagination__first-page::before {
+.app-content-pagination__last-page::before, .app-content-pagination__first-page::before {
     content: '';
     position: absolute;
     top: 0;
@@ -465,9 +459,7 @@ html {
     border-color: transparent transparent transparent var(--primary-color);
 }
 
-.app-content-pagination__before-page,
-.app-content-pagination__affter-page,
-.app-content-pagination__item-page {
+.app-content-pagination__before-page, .app-content-pagination__affter-page, .app-content-pagination__item-page {
     --size: 2.8rem;
     width: var(--size);
     height: var(--size);
@@ -476,15 +468,11 @@ html {
     transition: .2s;
 }
 
-.app-content-pagination__before-page:hover,
-.app-content-pagination__affter-page:hover,
-.app-content-pagination__item-page:hover {
+.app-content-pagination__before-page:hover, .app-content-pagination__affter-page:hover, .app-content-pagination__item-page:hover {
     background-color: var(--background-content-color);
 }
 
-.current-page:hover,
-.app-content-pagination__first-page:hover,
-.app-content-pagination__last-page:hover {
+.current-page:hover, .app-content-pagination__first-page:hover, .app-content-pagination__last-page:hover {
     opacity: 0.9;
     background-color: var(--primary-color);
 }
