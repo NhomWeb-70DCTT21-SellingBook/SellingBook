@@ -95,5 +95,30 @@ function renderDataWards() {
     });
 }
 
+function saveAddressUser() {
+    var province = provinces.find(function(value) {
+        return value.matp == document.getElementById('province').value;
+    });
+    var district = districtes.find(function(value) {
+        return value.maqh == document.getElementById('district').value;
+    });
+    var ward = wards.find(function(value) {
+        return value.xaid == document.getElementById('ward').value;
+    });
+
+    var address = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        infoExtra: document.getElementById('info-extra').value,
+        province: province.ten,
+        district: district.ten,
+        ward: ward.ten,
+        number: document.getElementById('number').value
+    };
+
+    // Save in local storage
+    localStorage.setItem('address', JSON.stringify(address));
+}
+
 // Call function
 getDataProvinces();

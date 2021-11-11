@@ -32,7 +32,7 @@
                         <div class="modal-input__info">
                             <div class="modal-input__group">
                                 <i class="fas fa-book"></i>
-                                <input type="text" name="name" id="name" placeholder="Nhập họ và tên của bạn..."
+                                <input type="text" name="txtName" id="name" placeholder="Nhập họ và tên của bạn..."
                                     required>
                             </div>
                             <div class="modal-input__group">
@@ -68,14 +68,14 @@
                             </div>
                             <div class="modal-input__group" style="height: 114px;">
                                 <i class="fas fa-map-signs"></i>
-                                <textarea name="info-extra" id="info-extra"
+                                <textarea name="number" id="number"
                                     placeholder="Nhập số nhà hoặc địa chỉ cụ thể..." required></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-input__btn">
-                    <button style="flex: 1;">Xác nhận</button>
+                    <button style="flex: 1;" onclick="saveAddressUser()">Xác nhận</button>
                     <a href="home.html" style="flex: 1;">Hủy</a>
                 </div>
             </form>
