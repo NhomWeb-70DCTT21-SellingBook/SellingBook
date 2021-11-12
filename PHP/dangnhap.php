@@ -26,15 +26,18 @@ if (isset($_POST['dangnhap']))
     //Kiểm tra tên đăng nhập có tồn tại không
     // $query = mysqli_query("SELECT username, password FROM account WHERE username='$username'");
     $conn =mysqli_connect('localhost', 'root', '', 'sellingbook');
-    $query = "SELECT email, password FROM account WHERE email='".$email."'";
+    $query = "SELECT id, email, password FROM account WHERE email='".$email."'";
     $result = mysqli_query($conn,$query);
     if (mysqli_num_rows($result) <=0) {
         echo "Tên đăng nhập này không tồn tại. Vui lòng kiểm tra lại. <a href='javascript: history.go(-1)'>Trở lại</a>";
         exit;
     }
-     
+    
     //Lấy mật khẩu trong database ra
     $row = mysqli_fetch_assoc($result);
+
+    // Lấy id ra
+    $id = $row['id'];
      
     //So sánh 2 mật khẩu có trùng khớp hay không
     if ($password != $row['password']) {
@@ -43,8 +46,9 @@ if (isset($_POST['dangnhap']))
     }
      
     //Lưu tên đăng nhập
+    $_SESSION['id'] = $id;
     $_SESSION['email'] = $email;
-    echo "Xin chào " . $email . ". Bạn đã đăng nhập thành công. <a href='http://localhost/LearnPHP/SellingBook/HTML/home.html'>Về trang chủ</a>";
+    header('Location: http://localhost/LearnPHP/SellingBook/HTML/home.html');
     die();
 }
 ?>

@@ -29,7 +29,7 @@
 }
 
 .app-header-navbar__item {
-    color: #f1f1f1;
+    color: #a2a2a2;
 }
 
 .app-header-navbar__item p {
@@ -38,7 +38,7 @@
     height: 24px;
     line-height: 24px;
     border-radius: 50%;
-    background-color: #f1f1f1;
+    background-color: #a2a2a2;
     color: var(--white-color);
     text-align: center;
 }

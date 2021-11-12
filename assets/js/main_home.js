@@ -1,4 +1,6 @@
 // Declare variable
+var account;
+
 var carts = [];
 if (localStorage.getItem('carts') != null) {
     carts = JSON.parse(localStorage.getItem('carts'));
@@ -15,6 +17,21 @@ if(GetURLParameter('page') != -1) {
 }
 if(GetURLParameter('size') != -1) {
     size = parseInt(GetURLParameter('size'));
+}
+
+// Authentication
+function getCurrentAccount() {
+    var http = new XMLHttpRequest();
+
+    http.open('GET', path + `api/get-currentaccount.php`, true);
+
+    http.send();
+
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            account = JSON.parse(this.responseText);
+        }
+    }
 }
 
 // Get data

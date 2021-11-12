@@ -87,9 +87,10 @@
                         <div class="app-body__step-payment">
                             <div class="app-body-step-payment__text">Giao hàng đến</div>
                             <div class="app-body-step-payment__content">
-                                <div class="app-body-step-payment-content__info">Quốc Khánh</div>
-                                <div class="app-body-step-payment-content__info">Hải Hậu, Nam Định</div>
-                                <div class="app-body-step-payment-content__info">0182918212 - quockhanh@gmail.com</div>
+                                <div class="app-body-step-payment-content__info" id="receiver-name">Quốc Khánh</div>
+                                <div class="app-body-step-payment-content__info" id="receiver-address">Hải Hậu, Nam Định</div>
+                                <div class="app-body-step-payment-content__info" id="receiver-info-extra">Hải Hậu, Nam Định</div>
+                                <div class="app-body-step-payment-content__info" id="receiver-phone-email">0182918212 - quockhanh@gmail.com</div>
                             </div>
                         </div>
                         <div class="app-body__bill">
@@ -116,11 +117,12 @@
                                 <span id="totalPayment">166,000đ</span>
                             </div>
                         </div>
-                    <span class="app-body__btn app__btn">Xác nhận thanh toán</span>
+                    <span class="app-body__btn app__btn" onclick="showDialogQuestion()">Xác nhận đặt hàng</span>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal"></div>
 
         <footer class="app__footer">
             <p>Powered by <a href="https://github.com/kasisoiqk">Khanh dz 2021</a></p>
