@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/grid.css">
     <link rel="stylesheet" href="../assets/css/style_payment.css">
+
+    <script>
+        if (localStorage.getItem('carts') == null || localStorage.getItem('address') == null) {
+            window.location = 'http://localhost/LearnPHP/SellingBook/HTML/home.html';
+        }
+    </script>
 </head>
 
 <body>
@@ -88,9 +94,12 @@
                             <div class="app-body-step-payment__text">Giao hàng đến</div>
                             <div class="app-body-step-payment__content">
                                 <div class="app-body-step-payment-content__info" id="receiver-name">Quốc Khánh</div>
-                                <div class="app-body-step-payment-content__info" id="receiver-address">Hải Hậu, Nam Định</div>
-                                <div class="app-body-step-payment-content__info" id="receiver-info-extra">Hải Hậu, Nam Định</div>
-                                <div class="app-body-step-payment-content__info" id="receiver-phone-email">0182918212 - quockhanh@gmail.com</div>
+                                <div class="app-body-step-payment-content__info" id="receiver-address">Hải Hậu, Nam Định
+                                </div>
+                                <div class="app-body-step-payment-content__info" id="receiver-info-extra">Hải Hậu, Nam
+                                    Định</div>
+                                <div class="app-body-step-payment-content__info" id="receiver-phone-email">0182918212 -
+                                    quockhanh@gmail.com</div>
                             </div>
                         </div>
                         <div class="app-body__bill">
@@ -117,11 +126,13 @@
                                 <span id="totalPayment">166,000đ</span>
                             </div>
                         </div>
-                    <span class="app-body__btn app__btn" onclick="showDialogQuestion()">Xác nhận đặt hàng</span>
+                        <span class="app-body__btn app__btn" onclick="showDialogQuestion()">Xác nhận đặt hàng</span>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="toast"></div>
         <div class="modal"></div>
 
         <footer class="app__footer">
@@ -129,6 +140,7 @@
         </footer>
     </div>
 
+    <script src="../assets/js/toast.js"></script>
     <script src="../assets/js/main_payment.js"></script>
 </body>
 

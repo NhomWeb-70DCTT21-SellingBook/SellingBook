@@ -96,6 +96,20 @@ function order() {
     http.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
+            if(this.responseText == 'success') {
+                localStorage.removeItem('carts');
+                localStorage.removeItem('address');
+
+                showToast({
+                    message: 'Bạn đã đặt hàng thành công! Chúng tôi sẽ liên hệ cho bạn sớm.',
+                    type: 'success',
+                    duration: 3000
+                });
+
+                setTimeout(function() {
+                    window.location = 'http://localhost/LearnPHP/SellingBook/HTML/home.html';
+                }, 5000);
+            }
         }
     }
 }
