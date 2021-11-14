@@ -89,7 +89,7 @@ function order() {
 
     var http = new XMLHttpRequest();
 
-    http.open('POST', 'http://localhost/LearnPHP/SellingBook/PHP/api/order.php');
+    http.open('POST', path + 'api/order.php');
 
     http.send(JSON.stringify(data));
 
@@ -107,7 +107,7 @@ function order() {
                 });
 
                 setTimeout(function() {
-                    window.location = 'http://localhost/LearnPHP/SellingBook/HTML/home.html';
+                    window.location = 'home.html';
                 }, 5000);
             }
         }

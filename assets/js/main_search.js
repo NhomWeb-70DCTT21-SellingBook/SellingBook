@@ -1,26 +1,82 @@
 // Declare variable
+var account;
+
 var carts = [];
 if (localStorage.getItem('carts') != null) {
     carts = JSON.parse(localStorage.getItem('carts'));
 }
 
-var path = 'http://localhost/LearnPHP/SellingBook/PHP/';
-
 var books = [];
 
 var page = 1, size = 20, txtSearch = '', cate = 0;
 
-if(GetURLParameter('page') != -1) {
+if(GetURLParameter('page') != -1 && GetURLParameter('page') != '') {
     page = parseInt(GetURLParameter('page'));
 }
-if(GetURLParameter('size') != -1) {
+if(GetURLParameter('size') != -1 && GetURLParameter('size') != '') {
     size = parseInt(GetURLParameter('size'));
 }
-if(GetURLParameter('search') != -1) {
+if(GetURLParameter('search') != -1 && GetURLParameter('search') != '') {
     txtSearch = GetURLParameter('search');
 }
-if(GetURLParameter('cate') != -1) {
+if(GetURLParameter('cate') != -1 && GetURLParameter('cate') != '') {
     cate = parseInt(GetURLParameter('cate'));
+}
+
+// Authentication
+function getCurrentAccount() {
+    var http = new XMLHttpRequest();
+
+    http.open('GET', path + `api/get-currentaccount.php`, true);
+
+    http.send();
+
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            account = JSON.parse(this.responseText);
+            loadHeader();
+        }
+    }
+}
+
+function loadHeader() {
+    var headerDOM = document.querySelector('.app-header-navbar__right');
+    headerDOM.innerHTML = `
+    <a href="#" class="app-header-navbar__item">
+        <span class="material-icons-outlined">card_giftcard</span>
+        <p>Ưu đãi & tiện ích</p>
+    </a>
+    <a href="#" class="app-header-navbar__item">
+        <span class="material-icons-outlined">inventory</span>
+        <p>Kiểm tra đơn hàng</p>
+    </a>
+    `;
+
+    if(account) {
+        headerDOM.innerHTML += `
+        <a href="#" class="app-header-navbar__item">
+            <span class="material-icons-outlined">account_circle</span>
+            <p>${account.email}</p>
+        </a>
+        <a href="logout.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">logout</span>
+            <p>Đăng xuất</p>
+        </a>
+        `;
+    }
+    else {
+        headerDOM.innerHTML += `
+        <a href="dangky.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">login</span>
+            <p>Đăng nhập</p>
+        </a>
+        <a href="dangky.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">logout</span>
+            <p>Đăng ký</p>
+        </a>
+        `;
+    }
+    
 }
 
 // Get data
@@ -133,6 +189,8 @@ function loadCart() {
 
 // Render data books
 function renderBooks() {
+    var category = categories.find(function(category) {return category.id == cate});
+    document.getElementById('view-cate').innerText = (cate == 0) ? 'Tất cả' : category.name;
     document.getElementById('view-search').innerText = txtSearch;
 
     var listBooksDOM = document.querySelector('.app-content-books__list');
@@ -250,6 +308,7 @@ function loadPaginationToView(numberBook) {
 
 
 // Call function
+getCurrentAccount();
 loadCategory();
 getDataBook();
 loadPagination();

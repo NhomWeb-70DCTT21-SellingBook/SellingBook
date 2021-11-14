@@ -9,7 +9,7 @@ function getDataProvinces() {
     var http = new XMLHttpRequest();
 
     // method: GET, POST, PUT, DELETE - POST: create , PUT: update, DELETE: delete
-    http.open('GET', 'http://localhost/LearnPHP/SellingBook/PHP/api/get-dataprovince.php');
+    http.open('GET', path + 'api/get-dataprovince.php');
 
     http.send();
 
@@ -26,7 +26,7 @@ function getDataDistricts() {
 
     var http = new XMLHttpRequest();
 
-    http.open('POST', 'http://localhost/LearnPHP/SellingBook/PHP/api/get-datadistrict.php');
+    http.open('POST', path + 'api/get-datadistrict.php');
 
     http.send(value);
 
@@ -43,7 +43,7 @@ function getDataWards() {
 
     var http = new XMLHttpRequest();
 
-    http.open('POST', 'http://localhost/LearnPHP/SellingBook/PHP/api/get-dataward.php');
+    http.open('POST', path + 'api/get-dataward.php');
 
     http.send(value);
 

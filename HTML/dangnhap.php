@@ -48,7 +48,7 @@ if (isset($_POST['dangnhap']))
     //Lưu tên đăng nhập
     $_SESSION['id'] = $id;
     $_SESSION['email'] = $email;
-    header('Location: http://localhost/LearnPHP/SellingBook/HTML/home.html');
+    header('Location: home.html');
     die();
 }
 ?>

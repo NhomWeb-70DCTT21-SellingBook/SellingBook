@@ -30,6 +30,12 @@ var categories = [
     }
 ];
 
+var url = window.location.href.split('/');
+url.pop();
+url.pop();
+url.push('PHP')
+var path = url.join('/') + '/';
+
 // Set action for category box
 function loadCategory() {
     var cateDOM = document.querySelector('.app-header-main-search-filter__choose');

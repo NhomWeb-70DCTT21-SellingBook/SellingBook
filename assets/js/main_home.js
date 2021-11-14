@@ -6,8 +6,6 @@ if (localStorage.getItem('carts') != null) {
     carts = JSON.parse(localStorage.getItem('carts'));
 }
 
-var path = 'http://localhost/LearnPHP/SellingBook/PHP/';
-
 var books = [];
 
 var page = 1, size = 20;
@@ -30,8 +28,57 @@ function getCurrentAccount() {
     http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             account = JSON.parse(this.responseText);
+            loadHeader();
+
+            if(account != null) {
+                showToast({
+                    message: `Chào mừng ${account.email} đến với Book Buy!`,
+                    type: 'success',
+                    duration: 3000
+                });
+            }
         }
     }
+}
+
+function loadHeader() {
+    var headerDOM = document.querySelector('.app-header-navbar__right');
+    headerDOM.innerHTML = `
+    <a href="#" class="app-header-navbar__item">
+        <span class="material-icons-outlined">card_giftcard</span>
+        <p>Ưu đãi & tiện ích</p>
+    </a>
+    <a href="#" class="app-header-navbar__item">
+        <span class="material-icons-outlined">inventory</span>
+        <p>Kiểm tra đơn hàng</p>
+    </a>
+    `;
+
+    if(account) {
+        headerDOM.innerHTML += `
+        <a href="#" class="app-header-navbar__item">
+            <span class="material-icons-outlined">account_circle</span>
+            <p>${account.email}</p>
+        </a>
+        <a href="logout.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">logout</span>
+            <p>Đăng xuất</p>
+        </a>
+        `;
+    }
+    else {
+        headerDOM.innerHTML += `
+        <a href="dangky.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">login</span>
+            <p>Đăng nhập</p>
+        </a>
+        <a href="dangky.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">logout</span>
+            <p>Đăng ký</p>
+        </a>
+        `;
+    }
+    
 }
 
 // Get data
@@ -259,6 +306,7 @@ function loadPaginationToView(numberBook) {
 
 
 // Call function
+getCurrentAccount();
 loadCategory();
 getDataBook();
 loadPagination();

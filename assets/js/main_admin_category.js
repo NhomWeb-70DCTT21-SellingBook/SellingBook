@@ -1,8 +1,6 @@
 // Declare variable
 var categories = [];
 
-var path = 'http://localhost/LearnPHP/SellingBook/PHP/';
-
 // Get data
 function getDataCate() {
     var http = new XMLHttpRequest();

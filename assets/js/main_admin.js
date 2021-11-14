@@ -1,8 +1,6 @@
 // Declare variable
 var books = [], categories = [];
 
-var path = 'http://localhost/LearnPHP/SellingBook/PHP/';
-
 var page = 1, size = 20;
 
 if (GetURLParameter('page') != -1) {

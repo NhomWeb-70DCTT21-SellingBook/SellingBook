@@ -1,10 +1,84 @@
 // Declare variable
+var account;
+
 var carts = [];
 if(localStorage.getItem('carts') != null) {
     carts = JSON.parse(localStorage.getItem('carts'));
 }
 
 // JSON
+
+// Authentication
+function getCurrentAccount() {
+    var http = new XMLHttpRequest();
+
+    http.open('GET', path + `api/get-currentaccount.php`, true);
+
+    http.send();
+
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            account = JSON.parse(this.responseText);
+            loadHeader();
+        }
+    }
+}
+
+// Authentication
+function getCurrentAccount() {
+    var http = new XMLHttpRequest();
+
+    http.open('GET', path + `api/get-currentaccount.php`, true);
+
+    http.send();
+
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            account = JSON.parse(this.responseText);
+            loadHeader();
+        }
+    }
+}
+
+function loadHeader() {
+    var headerDOM = document.querySelector('.app-header-navbar__right');
+    headerDOM.innerHTML = `
+    <a href="#" class="app-header-navbar__item">
+        <span class="material-icons-outlined">card_giftcard</span>
+        <p>Ưu đãi & tiện ích</p>
+    </a>
+    <a href="#" class="app-header-navbar__item">
+        <span class="material-icons-outlined">inventory</span>
+        <p>Kiểm tra đơn hàng</p>
+    </a>
+    `;
+
+    if(account) {
+        headerDOM.innerHTML += `
+        <a href="#" class="app-header-navbar__item">
+            <span class="material-icons-outlined">account_circle</span>
+            <p>${account.email}</p>
+        </a>
+        <a href="logout.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">logout</span>
+            <p>Đăng xuất</p>
+        </a>
+        `;
+    }
+    else {
+        headerDOM.innerHTML += `
+        <a href="dangky.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">login</span>
+            <p>Đăng nhập</p>
+        </a>
+        <a href="dangky.php" class="app-header-navbar__item">
+            <span class="material-icons-outlined">logout</span>
+            <p>Đăng ký</p>
+        </a>
+        `;
+    }
+    
+}
 
 // Load list cart
 function loadListCart() {
@@ -156,4 +230,5 @@ function removeItem(id) {
 }
 
 // Call function
+getCurrentAccount();
 loadListCart();
