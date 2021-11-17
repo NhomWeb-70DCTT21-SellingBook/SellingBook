@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tìm kiếm | Book buy</title>
+    <title>Tin nhắn | Book buy</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
         integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/grid.css">
     <link rel="stylesheet" href="../assets/css/style_home.css">
+    <link rel="stylesheet" href="../assets/css/style_chat.css">
     <link rel="stylesheet" href="../assets/css/responsive_home.css">
 </head>
 
@@ -193,141 +193,82 @@
                 <div class="grid wide">
                     <ul class="app-content__linker-wrapper">
                         <li><a href="home.html"><span class="material-icons-outlined">home</span>Trang chủ</a></li>
-                        <li><a href="#">/ Tìm kiếm</a></li>
+                        <li><a href="chat.html">/ Tin nhắn</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="app-content__search-text">
-                <div class="grid wide">
-                    Bạn đang tìm kiếm theo danh mục: <a id="view-cate" href="#">Tất cả</a>
-                    Với nội dung tìm kiếm: <a id="view-search" href="#">Sách toán</a>
-                </div>
-            </div>
-            <div class="app-content__books">
+            <div class="app-content__body">
                 <div class="grid wide">
                     <div class="row">
-                        <div class="col l-2 m-4 c-12">
-                            <div class="app-content-books__title"><span
-                                    class="material-icons-outlined">view_list</span>Danh mục sách</div>
-                            <ul class="app-content-books__cate">
-                                <li class="app-content-books-cate__item"><a href="#">Truyện tranh</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Artbook & sách tranh</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Văn học Việt Nam</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Văn học nước ngoài</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Kinh tế</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Sách - Truyện thiếu nhi</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Sách Teen</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Sách cho cha mẹ</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Khoa học công nghệ</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Thể dục thể thao</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Từ điển</a></li>
-                            </ul>
+                        <div class="col l-4 m-4 c-12">
+                            <div class="app-content-body__list-chat">
+                                <div class="app-content-body-list-chat__text">Danh sách những người trò chuyện</div>
+                                <div class="app-content-body-list-chat__search">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" name="txt-search" id="txt-search" placeholder="Tìm kiếm trò chuyện...">
+                                </div>
+                                <ul class="app-content-body-list-chat__navbar">
+                                    <li class="app-content-body-list-chat-navbar__item active-color">
+                                        <img src="../assets/images/user.png" alt="user">
+                                        <p>Chăm sóc khách hàng</p>
+                                    </li>
+                                    <li class="app-content-body-list-chat-navbar__item message-unread">
+                                        <img src="../assets/images/user.png" alt="user">
+                                        <p>Nguyễn Quốc Khánh</p>
+                                    </li>
+                                    <li class="app-content-body-list-chat-navbar__item">
+                                        <img src="../assets/images/user.png" alt="user">
+                                        <p>Nguyễn Thị Thùy Duyên</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col l-10 m-8 c-12">
-                            <div class="app-content-books__text">Kết quả tìm kiếm</div>
-
-                            <!-- Render list book here -->
-                            <div class="app-content-books__list"></div>
-
-                            <!-- Pagination -->
-                            <div class="app-content__pagination"></div>
+                        <div class="col l-8 m-8 c-12">
+                            <div class="app-content-body__message">
+                                <div class="app-content-body-message__text">
+                                    <div>
+                                        <img src="../assets/images/user.png" alt="user">
+                                        <h2 id="name-user-chat">Chọn một người để bắt đầu cuộc trò chuyện</h2>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-phone-alt"></i>
+                                        <i class="fas fa-video"></i>
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="app-content-body-message__read-wrapper">
+                                    <div class="app-content-body-message__read">
+                                        <a>
+                                            <img src="../assets/images/message.png" alt="message">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="app-content-body-message__control">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <i class="fas fa-image"></i>
+                                    <i class="fas fa-microphone"></i>
+                                    <div>
+                                        <input type="text" id="txtmessage" name="txtmessage" placeholder="Nội dung tin nhắn..." required>
+                                        <span class="app__btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Gửi</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <footer>
-            <div class="bg-bottom-ecaward hide-responsive">
-                <ul>
-                    <li><a href="#">Bookbuy.vn </a></li>
-                    <li><a href="#">Top 3 Website TMĐT ngành Sách tiêu biểu </a></li>
-                </ul>
-            </div>
-
-            <div class="categories">
-                <ul>
-                    <li>
-                        <b>NHÀ SÁCH TRỰC TUYẾN BOOKBUY.VN </b>
-                        <ul>
-                            <li
-                                style="font-family: Arial,Helvetica,sans-serif; line-height: 18px; font-size:12px;text-align:justify">
-
-                                <p style="padding:inherit">
-                                    <a href="#" style="padding: 0;  border: 0;"><b>Mua sách online</b></a> tại nhà sách
-                                    trực tuyến Bookbuy.vn để được cập nhật nhanh nhất các tựa sách đủ thể loại với mức
-                                    giảm 15 – 35% cùng nhiều ưu đãi, quà tặng kèm. Qua nhiều năm, không chỉ là địa chỉ
-                                    tin cậy để bạn <b>mua sách trực tuyến</b>, Bookbuy còn có quà tặng, văn phòng phẩm,
-                                    vật dụng gia đình,…với chất lượng đảm bảo, chủng loại đa dạng, chế độ bảo hành đầy
-                                    đủ và giá cả hợp lý từ hàng trăm thương hiệu uy tín trong và ngoài nước. Đặc biệt,
-                                    bạn có thể chọn những mẫu <a href="#"
-                                        style="color: blue; border-right: none; padding: 0px 0px; ">sổ tay handmade</a>
-                                    hay nhiều món <a href="#" style="color:blue;border-right:none;padding:0px 0px;">quà
-                                        tặng sinh nhật</a> độc đáo chỉ có tại Bookbuy.vn.
-                                </p>
-                                <p style="padding:inherit">
-                                    <b>Mua sách online</b> tại Bookbuy, bạn được tận hưởng chính sách hỗ trợ miễn phí
-                                    đổi trả hàng, giao hàng nhanh – tận nơi – miễn phí*, thanh toán linh hoạt - an toàn,
-                                    đặc biệt giảm thêm trên giá bán khi sử dụng BBxu giúp bạn <b>mua sách online</b> giá
-                                    0đ!
-                                </p>
-                                <p style="padding:inherit">
-                                    Chỉ với 3 cú click chuột, chưa bao giờ trải nghiệm <b>mua sách online</b> lại dễ
-                                    chịu và nhẹ nhàng như vậy. Còn chần chờ gì nữa, đặt mua ngay những tựa
-                                    <a href="#" style="color: blue; border-right: none; padding: 0px 0px; ">sách hay</a>
-                                    cùng hàng ngàn sản phẩm chất lượng khác tại Bookbuy.vn!
-                                </p>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="letter-bottom">
-                <div class="container">
-                    <div class="row form-letter">
-                        <div class="letter_box" style="display: flex">
-                            <div class="canh-cam-img">
-                                <img src="https://bookbuy.vn/Images/frontend/base/canh-cam-letter.png">
-                            </div>
-                            <div class=" canh-cam-letter">
-                                <p class="head-text-letter">Đăng ký nhận bản tin từ Bookbuy</p>
-                                <p class="sub-text-letter">Đừng bỏ lỡ những tin nhắn ưu đãi độc quyền dành riêng cho bạn
-                                </p>
-                            </div>
-                        </div>
-
-
-                        <div class=" canh-cam-form" style="display: inline-block;">
-                            <form action="" id="emailletter-bottom" method="post">
-                                <div class="entry-form">
-                                    <input type="text" name="EmailLetter" id="submit-letter"
-                                        placeholder="Nhập địa chỉ email của bạn">
-                                    <ul class="action-submit">
-                                        <li><a href="#">NAM</a></li>
-                                        <li><a href="#">NỮ</a></li>
-                                        <li><a href="#">LGBT</a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <footer class="app__footer">
+            <p>Powered by <a href="https://github.com/kasisoiqk">Khanh dz 2021</a></p>
         </footer>
     </div>
-
-    <a href="#" class="up-top">TOP</a>
-    <a href="chat.html" class="go-to-message">
-        <i class="fas fa-comment-alt"></i>
-        <p>Xem tin nhắn</p>
-    </a>
 
     <div class="toast"></div>
 
     <script src="../assets/js/toast.js"></script>
     <script src="../assets/js/main_base.js"></script>
-    <script src="../assets/js/main_search.js"></script>
+    <script src="../assets/js/main_chat.js"></script>
 </body>
 
 </html>

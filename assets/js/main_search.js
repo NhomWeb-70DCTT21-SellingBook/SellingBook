@@ -248,7 +248,7 @@ function renderBooks() {
 function loadPagination() {
     var http = new XMLHttpRequest();
 
-    http.open('GET', path + `api/get-numberbook.php?`, true);
+    http.open('GET', path + `api/get-numberbook.php?search=${txtSearch}&cate=${cate}`, true);
 
     http.send();
 

@@ -5,23 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tìm kiếm | Book buy</title>
+    <title>Kiểm tra đơn hàng | Book Buy</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-        integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/icon?family=Poppins:display=swap|Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/grid.css">
     <link rel="stylesheet" href="../assets/css/style_home.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/style_purchase.css">
     <link rel="stylesheet" href="../assets/css/responsive_home.css">
 </head>
 
 <body>
+    <?php
+    if($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $search = $_GET['txt-search'];
+        
+        $conn = mysqli_connect('localhost', 'root', '', 'sellingbook') or die ('Lỗi');
+
+        $query = "SELECT *, billinfo.so_luong so_sach FROM bill, billinfo, book, customer, address WHERE bill.id = billinfo.id_hoadon AND "
+            ." billinfo.id_sach = book.id AND bill.id_nguoimua = customer.id ".
+            " AND customer.id_diachi = address.id AND bill.id = " . $search;
+        echo $query;
+        $result = mysqli_query($conn, $query);
+
+        
+    }
+    ?>
     <div class="app">
         <header class="app__header">
             <div class="app-header__navbar hide-on-lower-tablet">
@@ -41,7 +53,24 @@
                                 <p>Khuyễn mãi</p>
                             </a>
                         </div>
-                        <div class="app-header-navbar__right"></div>
+                        <div class="app-header-navbar__right">
+                            <a href="#" class="app-header-navbar__item">
+                                <span class="material-icons-outlined">card_giftcard</span>
+                                <p>Ưu đãi & tiện ích</p>
+                            </a>
+                            <a href="#" class="app-header-navbar__item">
+                                <span class="material-icons-outlined">inventory</span>
+                                <p>Kiểm tra đơn hàng</p>
+                            </a>
+                            <a href="#" class="app-header-navbar__item">
+                                <span class="material-icons-outlined">login</span>
+                                <p>Đăng nhập</p>
+                            </a>
+                            <a href="#" class="app-header-navbar__item">
+                                <span class="material-icons-outlined">logout</span>
+                                <p>Đăng ký</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,11 +80,9 @@
                         <div class="app-header-mobile__left">
                             <div class="app-header-mobile-left__menu">
                                 <input type="checkbox" id="cbo-mobile-menu" hidden>
-                                <label for="cbo-mobile-menu"
-                                    class="app-header-mobile-left__menu-icon material-icons-outlined">subject</label>
+                                <label for="cbo-mobile-menu" class="app-header-mobile-left__menu-icon material-icons-outlined">subject</label>
                                 <label for="cbo-mobile-menu" class="app-header-mobile-left-menu__list-modal"></label>
-                                <label for="cbo-mobile-menu"
-                                    class="app-header-mobile-left-menu__close material-icons-outlined">close</label>
+                                <label for="cbo-mobile-menu" class="app-header-mobile-left-menu__close material-icons-outlined">close</label>
                                 <label for="none" class="app-header-mobile-left-menu__list">
                                     <ul>
                                         <li class="app-header-mobile-left-menu__item">
@@ -192,47 +219,114 @@
             <div class="app-content__linker">
                 <div class="grid wide">
                     <ul class="app-content__linker-wrapper">
-                        <li><a href="home.html"><span class="material-icons-outlined">home</span>Trang chủ</a></li>
-                        <li><a href="#">/ Tìm kiếm</a></li>
+                        <li><a href="#"><span class="material-icons-outlined">home</span>Trang chủ</a></li>
+                        <li><a href="#">/ Kiểm tra đơn hàng</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="app-content__search-text">
+            <div class="app-content__body">
                 <div class="grid wide">
-                    Bạn đang tìm kiếm theo danh mục: <a id="view-cate" href="#">Tất cả</a>
-                    Với nội dung tìm kiếm: <a id="view-search" href="#">Sách toán</a>
-                </div>
-            </div>
-            <div class="app-content__books">
-                <div class="grid wide">
-                    <div class="row">
-                        <div class="col l-2 m-4 c-12">
-                            <div class="app-content-books__title"><span
-                                    class="material-icons-outlined">view_list</span>Danh mục sách</div>
-                            <ul class="app-content-books__cate">
-                                <li class="app-content-books-cate__item"><a href="#">Truyện tranh</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Artbook & sách tranh</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Văn học Việt Nam</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Văn học nước ngoài</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Kinh tế</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Sách - Truyện thiếu nhi</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Sách Teen</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Sách cho cha mẹ</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Khoa học công nghệ</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Thể dục thể thao</a></li>
-                                <li class="app-content-books-cate__item"><a href="#">Từ điển</a></li>
-                            </ul>
-                        </div>
-                        <div class="col l-10 m-8 c-12">
-                            <div class="app-content-books__text">Kết quả tìm kiếm</div>
-
-                            <!-- Render list book here -->
-                            <div class="app-content-books__list"></div>
-
-                            <!-- Pagination -->
-                            <div class="app-content__pagination"></div>
-                        </div>
+                    <!-- <ul class="app-content-body__navbar">
+                        <li class="app-content-body__navbar-item item--active">Tất cả</li>
+                        <li class="app-content-body__navbar-item">Chờ xác nhận</li>
+                        <li class="app-content-body__navbar-item">Đang giao</li>
+                        <li class="app-content-body__navbar-item">Đã giao</li>
+                        <li class="app-content-body__navbar-item">Đã hủy</li>
+                    </ul> -->
+                    <div class="app-container-content__search">
+                        <!-- Re-use header search -->
+                        <form class="app-header__search" style="margin-top: 12px">
+                            <button class="material-icons-outlined">search</button>
+                            <input type="text" id="txt-search" name="txt-search" placeholder="Nhập mã đơn hàng hoặc tên đơn hàng muốn tìm...">
+                        </form>
                     </div>
+                    <?php 
+                        if($result == false) {
+                            echo '<div style="line-height: 3rem; margin-top: 12px;">Không tồn tại đơn hàng có mã: ' . $search . '</div>';
+                        }
+                    ?>
+                    <ul class="app-content-body__list">
+                        <?php
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $trangthai = '';
+                            if($row['trang_thai'] == 0) {
+                                $trangthai = 'Chờ xác nhận';
+                            }
+                            else if($row['trang_thai'] == 1) {
+                                $trangthai = 'Đã đóng gói';
+                            }
+                            else if($row['trang_thai'] == 2) {
+                                $trangthai = 'Đang vận chuyển';
+                            }
+                            else if($row['trang_thai'] == 3) {
+                                $trangthai = 'Đã hoàn thành';
+                            }
+                            else {
+                                $trangthai = 'Đã hủy';
+                            }
+                            $diachi = $row['so_nha'] . ', ' . $row['xa_phuong'] . ', ' . $row['quan_huyen'] . ', ' . $row['tinh_tp'];
+                            echo '<li class="app-content-body__list-item">
+                                    <div class="app-content-body-list-item__info">
+                                        <div class="app-content-body-list-item__img">';
+                            echo '<img src="../assets/images/'.$row['anh'].'" alt="">';
+                            echo '</div>';
+                            echo '<div class="app-content-body-list-item__name">
+                                    <h2>'.$row['ten_sach'].'</h2>
+                                    <p>'.$row['tac_gia'].'</p>
+                                    <span>x '.$row['so_sach'].'</span>
+                                </div>';
+                            echo '<div class="app-content-body-list-item__price">
+                                    <div class="app-content-body-list-item__price-current">'.number_format($row['gia_ban']).'đ</div>
+                                    <div class="app-content-body-list-item__price-old">'.number_format($row['gia_chua_giam']).'đ</div>
+                                </div>';
+                            echo '</div>
+                                    <div class="app-content-body-list-item__control">
+                                        <div class="app-content-body-list-item-control__left">
+                                            <h2>'.$row['ho_ten'].'</h2>
+                                            <p>'.$diachi.'</p>
+                                            <span>'.$row['sdt'].'</span>
+                                        </div>
+                                        <div class="app-content-body-list-item-control__center">'.$trangthai.'</div>
+                                        <div class="app-content-body-list-item-control__right">
+                                            <h2><i class="fas fa-tags"></i> Tổng số tiền: &nbsp;<p>'.number_format($row['gia_ban']*$row['so_sach']).'đ</p>
+                                            </h2>
+                                            <span class="app__btn">Hủy</span>
+                                        </div>
+                                    </div>
+                                </li>';
+                        }
+                        ?>
+                        <!-- <li class="app-content-body__list-item">
+                            <div class="app-content-body-list-item__info">
+                                <div class="app-content-body-list-item__img">
+                                    <img src="../assets/images/tho-peter-cuoc-giai-cuu-ngay-giang-sinh_32047_1.png" alt="">
+                                </div>
+                                <div class="app-content-body-list-item__name">
+                                    <h2>NHÀ SÁCH TRỰC TUYẾN BOOKBUY.VN
+                                        Mua sách online tại nhà sách trực tuyến Bookbuy.vn để được cập nhật nhanh nhất các tựa sách đủ thể loại với mức giảm 15 – 35% cùng nhiều ưu đãi, quà tặng kèm. Qua nhiều năm, không chỉ là địa chỉ tin cậy để bạn mua sách trực tuyến, Bookbuy còn có quà tặng, văn phòng phẩm, vật dụng gia đình,…với chất lượng đảm bảo, chủng loại đa dạng, chế độ bảo h</h2>
+                                    <p>Nguyễn Văn A</p>
+                                    <span>x 2</span>
+                                </div>
+                                <div class="app-content-body-list-item__price">
+                                    <div class="app-content-body-list-item__price-current">99,000đ</div>
+                                    <div class="app-content-body-list-item__price-old">100,000đ</div>
+                                </div>
+                            </div>
+                            <div class="app-content-body-list-item__control">
+                                <div class="app-content-body-list-item-control__left">
+                                    <h2>Q Khanh</h2>
+                                    <p>Nam Định</p>
+                                    <span>091221892</span>
+                                </div>
+                                <div class="app-content-body-list-item-control__center">Chờ xác nhận</div>
+                                <div class="app-content-body-list-item-control__right">
+                                    <h2><i class="fas fa-tags"></i> Tổng số tiền: &nbsp;<p>99,000đ</p>
+                                    </h2>
+                                    <span class="app__btn">Hủy</span>
+                                </div>
+                            </div>
+                        </li> -->
+                    </ul>
                 </div>
             </div>
         </div>
@@ -250,8 +344,7 @@
                     <li>
                         <b>NHÀ SÁCH TRỰC TUYẾN BOOKBUY.VN </b>
                         <ul>
-                            <li
-                                style="font-family: Arial,Helvetica,sans-serif; line-height: 18px; font-size:12px;text-align:justify">
+                            <li style="font-family: Arial,Helvetica,sans-serif; line-height: 18px; font-size:12px;text-align:justify">
 
                                 <p style="padding:inherit">
                                     <a href="#" style="padding: 0;  border: 0;"><b>Mua sách online</b></a> tại nhà sách
@@ -260,8 +353,7 @@
                                     tin cậy để bạn <b>mua sách trực tuyến</b>, Bookbuy còn có quà tặng, văn phòng phẩm,
                                     vật dụng gia đình,…với chất lượng đảm bảo, chủng loại đa dạng, chế độ bảo hành đầy
                                     đủ và giá cả hợp lý từ hàng trăm thương hiệu uy tín trong và ngoài nước. Đặc biệt,
-                                    bạn có thể chọn những mẫu <a href="#"
-                                        style="color: blue; border-right: none; padding: 0px 0px; ">sổ tay handmade</a>
+                                    bạn có thể chọn những mẫu <a href="#" style="color: blue; border-right: none; padding: 0px 0px; ">sổ tay handmade</a>
                                     hay nhiều món <a href="#" style="color:blue;border-right:none;padding:0px 0px;">quà
                                         tặng sinh nhật</a> độc đáo chỉ có tại Bookbuy.vn.
                                 </p>
@@ -301,8 +393,7 @@
                         <div class=" canh-cam-form" style="display: inline-block;">
                             <form action="" id="emailletter-bottom" method="post">
                                 <div class="entry-form">
-                                    <input type="text" name="EmailLetter" id="submit-letter"
-                                        placeholder="Nhập địa chỉ email của bạn">
+                                    <input type="text" name="EmailLetter" id="submit-letter" placeholder="Nhập địa chỉ email của bạn">
                                     <ul class="action-submit">
                                         <li><a href="#">NAM</a></li>
                                         <li><a href="#">NỮ</a></li>
@@ -316,18 +407,6 @@
             </div>
         </footer>
     </div>
-
-    <a href="#" class="up-top">TOP</a>
-    <a href="chat.html" class="go-to-message">
-        <i class="fas fa-comment-alt"></i>
-        <p>Xem tin nhắn</p>
-    </a>
-
-    <div class="toast"></div>
-
-    <script src="../assets/js/toast.js"></script>
-    <script src="../assets/js/main_base.js"></script>
-    <script src="../assets/js/main_search.js"></script>
 </body>
 
 </html>

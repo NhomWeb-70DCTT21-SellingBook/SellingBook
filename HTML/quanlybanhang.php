@@ -67,19 +67,19 @@
                             </div>
                             <ul class="app-container-menu__control">
                                 <li class="app-container-menu-control__item">
-                                    <a href="http://localhost/LearnPHP/SellingBook/HTML/admin.html">
+                                    <a href="admin.html">
                                         <span class="material-icons-outlined">book</span>
                                         Quản lý thông tin sách
                                     </a>
                                 </li>
                                 <li class="app-container-menu-control__item">
-                                    <a href="http://localhost/LearnPHP/SellingBook/HTML/admin_category.html">
+                                    <a href="admin_category.html">
                                         <span class="material-icons-outlined">category</span>
                                         Quản lý danh mục sách
                                     </a>
                                 </li>
                                 <li class="app-container-menu-control__item active-color">
-                                    <a href="http://localhost/LearnPHP/SellingBook/PHP/quanlybanhang.php">
+                                    <a href="quanlybanhang.php">
                                         <span class="material-icons-outlined">inventory</span>
                                         Quản lý đơn đặt hàng
                                     </a>
@@ -91,7 +91,7 @@
                                     </a>
                                 </li>
                                 <li class="app-container-menu-control__item">
-                                    <a href="#">
+                                    <a href="chat.html">
                                         <span class="material-icons-outlined">question_answer</span>
                                         Chat với khách hàng
                                     </a>
@@ -268,6 +268,8 @@
         </footer>
         
     </div>
+
+    <a href="#" class="up-top">TOP</a>
     
 </body>
 
