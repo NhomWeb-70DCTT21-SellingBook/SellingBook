@@ -411,7 +411,7 @@
     </div>
 
     <script src="../assets/js/main_base.js"></script>
-    <script src="../assets/js/main_admin.js"></script>
+    <script src="../assets/js/main_home.js"></script>
 </body>
 
 </html>
