@@ -12,11 +12,11 @@ if (isset($_POST['dangnhap']))
     include('ketnoi.php');
      
     //Lấy dữ liệu nhập vào
-    $email = addslashes($_POST['txtEmail']);
+    $username = addslashes($_POST['txtEmail']);
     $password = addslashes($_POST['txtPassword']);
     
     //Kiểm tra đã nhập đủ tên đăng nhập với mật khẩu chưa
-    if (!$email || !$password) {
+    if (!$username || !$password) {
         echo "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu. <a href='javascript: history.go(-1)'>Trở lại</a>";
         exit;
     }
@@ -26,7 +26,7 @@ if (isset($_POST['dangnhap']))
     //Kiểm tra tên đăng nhập có tồn tại không
     // $query = mysqli_query("SELECT username, password FROM account WHERE username='$username'");
     $conn =mysqli_connect('localhost', 'root', '', 'sellingbook');
-    $query = "SELECT id, email, password FROM account WHERE email='".$email."'";
+    $query = "SELECT id, username, password FROM account WHERE username='".$username."'";
     $result = mysqli_query($conn,$query);
     if (mysqli_num_rows($result) <=0) {
         echo "Tên đăng nhập này không tồn tại. Vui lòng kiểm tra lại. <a href='javascript: history.go(-1)'>Trở lại</a>";
@@ -47,7 +47,7 @@ if (isset($_POST['dangnhap']))
      
     //Lưu tên đăng nhập
     $_SESSION['id'] = $id;
-    $_SESSION['email'] = $email;
+    $_SESSION['username'] = $username;
     
     header('Location: home.html');
     die();

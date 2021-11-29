@@ -38,7 +38,7 @@ function loadHeader() {
         headerDOM.innerHTML += `
         <a href="#" class="app-header-navbar__item">
             <span class="material-icons-outlined">account_circle</span>
-            <p>${account.email}</p>
+            <p>${account.username}</p>
         </a>
         <a href="logout.php" class="app-header-navbar__item">
             <span class="material-icons-outlined">logout</span>
@@ -82,7 +82,7 @@ function loadListUsers(users) {
     chatDOM.innerHTML = '';
     
     var user = users.find(function(value) {
-        return value.email == 'admin@gmail.com';
+        return value.username == 'admin';
     });
 
     var usersTmp;
@@ -111,7 +111,7 @@ function loadListUsers(users) {
             chatDOM.innerHTML += `
             <li class="app-content-body-list-chat-navbar__item" onclick="idNguoiNhan = ${value.id};openMessage(${value.id})">
                 <img src="../assets/images/user.png" alt="user">
-                <p>${value.email}</p>
+                <p>${value.username}</p>
             </li>
             `;
         }
@@ -122,7 +122,7 @@ function openMessage(id) {
     var user = users.find(function(value) {
         return value.id == id;
     });
-    document.getElementById('name-user-chat').innerText = (user.email == 'admin@gmail.com') ? 'Chăm sóc khách hàng' : user.email;
+    document.getElementById('name-user-chat').innerText = (user.username == 'admin@gmail.com') ? 'Chăm sóc khách hàng' : user.username;
     getDataMessage();
 }
 

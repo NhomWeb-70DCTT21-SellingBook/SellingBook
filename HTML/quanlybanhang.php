@@ -67,8 +67,8 @@
                                     <img src="../assets/images/5ef966aae04712194b56.jpg" alt="user-image">
                                 </div>
                                 <div class="app-container-menu-user__info">
-                                    <div class="app-container-menu-user-info__name">Nguyễn Quốc Khánh</div>
-                                    <div class="app-container-menu-user-info__email">quockhanh01091@gmail.com</div>
+                                    <div class="app-container-menu-user-info__name">Admin</div>
+                                    <div class="app-container-menu-user-info__email">admin@gmail.com</div>
                                 </div>
                             </div>
                             <ul class="app-container-menu__control">

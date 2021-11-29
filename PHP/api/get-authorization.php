@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['email']) && isset($_SESSION['id'])) {
+if(isset($_SESSION['username']) && isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
     $conn = mysqli_connect('localhost', 'root', '', 'sellingbook');
     $query = "SELECT * FROM account WHERE id = " . $id;

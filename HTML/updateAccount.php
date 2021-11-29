@@ -61,8 +61,8 @@
                                     <img src="../assets/images/5ef966aae04712194b56.jpg" alt="user-image">
                                 </div>
                                 <div class="app-container-menu-user__info">
-                                    <div class="app-container-menu-user-info__name">Nguyễn Quốc Khánh</div>
-                                    <div class="app-container-menu-user-info__email">quockhanh01091@gmail.com</div>
+                                    <div class="app-container-menu-user-info__name">Admin</div>
+                                    <div class="app-container-menu-user-info__email">admin@gmail.com</div>
                                 </div>
                             </div>
                             <ul class="app-container-menu__control">
@@ -126,7 +126,7 @@
                                 {
                                     $query="select u.id,id_tai_khoan,ho_ten,gioi_tinh,sdt,ngay_sinh,username,u.email,password,phan_quyen from account a,user u where a.id=u.id_tai_khoan and u.id='".$id."'";
                                     $result=mysqli_query($conn,$query);
-                                    if(mysqli_num_rows($result)>0)
+                                    if($result)
                                     {
                                         while($row=mysqli_fetch_assoc($result))
                                         {
@@ -261,7 +261,7 @@
                                     $conn = mysqli_connect('localhost', 'root', '', 'sellingbook');
                                 
                                     if ($conn==true) {
-                                        $query = "UPDATE account a,user u SET username='".$user."',u.email='".$email."',password='".$pass."',phan_quyen='".$phan_quyen."',ho_ten='".$hoTen."',
+                                        $query = "UPDATE account a,user u SET username='".$user."',email='".$email."',password='".$pass."',phan_quyen='".$phan_quyen."',ho_ten='".$hoTen."',
                                         ngay_sinh='".$ngaySinh."',sdt='".$sdt."',gioi_tinh='".$gioiTinh."' where a.id=u.id_tai_khoan and u.id='".$id."'";
                                         echo  $query;
                                         $result = mysqli_query($conn, $query);

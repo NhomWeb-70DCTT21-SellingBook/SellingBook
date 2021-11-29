@@ -17,7 +17,7 @@ if(isset($_SESSION['id'])) {
         while ($row = mysqli_fetch_array($result)){
             $datas[] = array(
                 'id' => $row['id'],
-                'email' => $row['email']
+                'username' => $row['username']
             );
         }
     }

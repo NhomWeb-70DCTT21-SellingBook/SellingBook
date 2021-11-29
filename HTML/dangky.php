@@ -39,7 +39,7 @@
                     <a href="#" class="social"><i class="fab fa-twitter"></i></a>
                 </div>
                 <span>hoặc dùng tài khoản của bạn</span>
-                <input type="email" placeholder="Email" name="txtEmail" />
+                <input type="text" placeholder="Username" name="txtEmail" />
                 <input type="password" placeholder="Password" name="txtPassword" />
                 <a href="#">Quên mật khẩu?</a>
                 <button name="dangnhap">Đăng nhập</button>

@@ -57,7 +57,7 @@ function loadHeader() {
         headerDOM.innerHTML += `
         <a href="thongtinbandoc.php" class="app-header-navbar__item">
             <span class="material-icons-outlined">account_circle</span>
-            <p>${account.email}</p>
+            <p>${account.username}</p>
         </a>
         <a href="logout.php" class="app-header-navbar__item">
             <span class="material-icons-outlined">logout</span>

@@ -32,7 +32,7 @@ function getCurrentAccount() {
 
             if(account != null) {
                 showToast({
-                    message: `Chào mừng ${account.email} đến với Book Buy!`,
+                    message: `Chào mừng ${account.username} đến với Book Buy!`,
                     type: 'success',
                     duration: 3000
                 });
@@ -58,7 +58,7 @@ function loadHeader() {
         headerDOM.innerHTML += `
         <a href="thongtinbandoc.php" class="app-header-navbar__item">
             <span class="material-icons-outlined">account_circle</span>
-            <p>${account.email}</p>
+            <p>${account.username}</p>
         </a>
         <a href="logout.php" class="app-header-navbar__item">
             <span class="material-icons-outlined">logout</span>

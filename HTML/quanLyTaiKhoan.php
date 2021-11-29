@@ -61,8 +61,8 @@
                                     <img src="../assets/images/5ef966aae04712194b56.jpg" alt="user-image">
                                 </div>
                                 <div class="app-container-menu-user__info">
-                                    <div class="app-container-menu-user-info__name">Nguyễn Quốc Khánh</div>
-                                    <div class="app-container-menu-user-info__email">quockhanh01091@gmail.com</div>
+                                    <div class="app-container-menu-user-info__name">Admin</div>
+                                    <div class="app-container-menu-user-info__email">admin@gmail.com</div>
                                 </div>
                             </div>
                             <ul class="app-container-menu__control">
@@ -139,7 +139,7 @@
                                 $conn=mysqli_connect("localhost","root","","sellingbook") or die('Loi ket noi DB');
                                 if($conn==true)
                                 {
-                                    $query="select u.id,id_tai_khoan,ho_ten,gioi_tinh,sdt,ngay_sinh,username,u.email,password,phan_quyen from account a,user u where a.id=u.id_tai_khoan";
+                                    $query="select u.id,id_tai_khoan,ho_ten,gioi_tinh,sdt,ngay_sinh,username,email,password,phan_quyen from account a,user u where a.id=u.id_tai_khoan";
                                     $result=mysqli_query($conn,$query);
                                     if($result)
                                     {

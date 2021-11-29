@@ -4,7 +4,7 @@ session_start();
 $request = file_get_contents('php://input');
 $param = json_decode($request, true);
 
-if(isset($_SESSION['email']) && isset($_SESSION['id'])) {
+if(isset($_SESSION['username']) && isset($_SESSION['id'])) {
     if($_SESSION['id'] != $param['idNguoiGui']) {
         die ('Bạn chưa được cấp quyền đọc tin nhắn!'); 
     }    
