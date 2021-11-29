@@ -48,6 +48,7 @@ if (isset($_POST['dangnhap']))
     //Lưu tên đăng nhập
     $_SESSION['id'] = $id;
     $_SESSION['email'] = $email;
+    
     header('Location: home.html');
     die();
 }

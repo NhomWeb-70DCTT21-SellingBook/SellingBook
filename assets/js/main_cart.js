@@ -47,7 +47,7 @@ function loadHeader() {
         <span class="material-icons-outlined">card_giftcard</span>
         <p>Ưu đãi & tiện ích</p>
     </a>
-    <a href="#" class="app-header-navbar__item">
+    <a href="purchase.php" class="app-header-navbar__item">
         <span class="material-icons-outlined">inventory</span>
         <p>Kiểm tra đơn hàng</p>
     </a>
@@ -55,7 +55,7 @@ function loadHeader() {
 
     if(account) {
         headerDOM.innerHTML += `
-        <a href="#" class="app-header-navbar__item">
+        <a href="thongtinbandoc.php" class="app-header-navbar__item">
             <span class="material-icons-outlined">account_circle</span>
             <p>${account.email}</p>
         </a>

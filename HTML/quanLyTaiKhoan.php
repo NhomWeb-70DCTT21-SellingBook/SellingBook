@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Book Buy</title>
+    <title>Admin | Book Buy|Quản lý Tài Khoản</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
         integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
@@ -20,15 +20,9 @@
     <link rel="stylesheet" href="../assets/css/responsive_base.css">
     <link rel="stylesheet" href="../assets/css/responsive_admin.css">
     <link rel="stylesheet" href="../assets/css/style_hoadon.css">
-
 </head>
 
 <body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-    <script src="../assets/css/jquery.table2excel.min.js"></script>
     <div class="app">
         <header class="app__header">
             <div class="grid wide">
@@ -52,9 +46,9 @@
             <div class="app-content__linker">
                 <div class="grid wide">
                     <ul class="app-content__linker-wrapper">
-                        <li><a href="#"><span class="material-icons-outlined">home</span>Trang chủ</a></li>
+                        <li><a href="home.html"><span class="material-icons-outlined">home</span>Trang chủ</a></li>
                         <li><a href="#">/ Quản trị</a></li>
-                        <li><a href="#">/ Quản lý thông tin sách</a></li>
+                        <li><a href="quanLyTaiKhoan.php">/ Quản lý đơn đặt hàng</a></li>
                     </ul>
                 </div>
             </div>
@@ -84,13 +78,13 @@
                                         Quản lý danh mục sách
                                     </a>
                                 </li>
-                                <li class="app-container-menu-control__item active-color">
+                                <li class="app-container-menu-control__item">
                                     <a href="quanlybanhang.php">
                                         <span class="material-icons-outlined">inventory</span>
                                         Quản lý đơn đặt hàng
                                     </a>
                                 </li>
-                                <li class="app-container-menu-control__item">
+                                <li class="app-container-menu-control__item active-color">
                                     <a href="quanLyTaiKhoan.php">
                                         <span class="material-icons-outlined">manage_accounts</span>
                                         Quản lý tài khoản
@@ -122,8 +116,8 @@
                                     <button class="material-icons-outlined" style="background-color: orange; color: white; border: none;" id="btn_search" name="btn_search">search</button>
                                     
                                     <!-- <input type="hidden" name="id-cate" id="id-cate" value=""> -->
-                                    <!-- <input type="text" id="txt-search_donhang" name="txt-search_donhang" placeholder="Nhập trạng thái đơn hàng"> -->
-                                    <select name="txt-search_donhang" id="txt-search_donhang">
+                                     <input type="text" id="txtHoTen" name="txt-search_hoTen" placeholder="Nhập họ tên người dùng">
+                                    <!-- <select name="txt-search_donhang" id="txt-search_donhang">
                                         <option value="" name="hocvan" value="">Hiển thị tất cả đơn hàng</option>
                                         <option value="0" name="hocvan" value="">Chờ xác nhận</option>
                                         <option value="1" name="hocvan" value="">Đã đóng gói</option>
@@ -131,70 +125,76 @@
                                         <option value="3" name="hocvan" value="">Đã hoàn thành</option>
                                         
                                     </select>
-                                    
+                                     -->
                                     
                                 </div>
                                 <!-- Re-use header filter home page -->
                                 
                             </div></form>
-                            <div class="app-container-content__text_php" style="width: 100%; margin-top: 16px;">
-                            
+                            <div class="app-container-content__text_php" style="width: 100%;">
+                             <div class="app-container-content__btn-add">
+                             <a href='addTk_user.php' class='btntrangthai'>+ Thêm mới người dùng</a>
+                            </div>
                             <?php
-
-                                $conn = mysqli_connect('localhost','root','','sellingbook');
-                                if ($conn) {
-                                    $query = 'SELECT * FROM bill';
-                                    $result = mysqli_query($conn,$query);
-                                    if (mysqli_num_rows($result) >0) {
-                                        
-                                        echo '<table id="tblMain"><thead>';
-                                        // đếm
-                                        $dem = mysqli_num_rows($result);
-                                        echo 'Tổng số: '.$dem.' đơn đặt hàng';
-                                        
-                                        //
-                                        echo '<th>id</th><th>id người mua</th><th>Thời gian đặt</th><th>Thời gian nhận</th><th>Trạng thái</th><th>Tổng tiền</th><th>Thao tác</th>';
-                                        echo '</thead>';
-                                            while ($row = mysqli_fetch_assoc($result)) {
-
-                                                echo '<tr>';
-                                                echo '<td>'.$row['id'].'</td>';
-                                                echo '<td>'.$row['id_nguoimua'].'</td>';
-                                                echo '<td>'.$row['thoi_gian_dat'].'</td>';
-                                                echo '<td>'.$row['thoi_gian_nhan'].'</td>';
-                                                if ($row['trang_thai'] == 0) {
-                                                    echo '<td>Chờ xác nhận</td>';
-                                                }
-                                                else if ($row['trang_thai'] == 1) {
-                                                    echo '<td>Đã đóng gói</td>';
-                                                }
-                                                else if ($row['trang_thai'] == 2) {
-                                                    echo '<td>Đang vận chuyển</td>';
-                                                }
-                                                else if ($row['trang_thai'] == 3) {
-                                                    echo '<td>Đã hoàn thành</td>';
-                                                }
-                                                else if ($row['trang_thai'] == 4) {
-                                                    echo '<td></td>';
-                                                }
-                                                echo '<td>'.$row['tong_tien'].'</td>';
-                                                echo "<td>".
-                                                     "<a  href='updatetrangthai.php?id=".$row['id']."' class='btntrangthai'>Thay đổi đơn hàng</a>";
-                                                    "</td>";
-                                                    // ." "."<a onclick='return confirm(\"Bạn có muốn xóa không?\")' href='delete.php?id=".$row['id']."' class='btntrangthai'>Hủy đơn hàng</a>".
-                                        echo '</tr>';
+                                $conn=mysqli_connect("localhost","root","","sellingbook") or die('Loi ket noi DB');
+                                if($conn==true)
+                                {
+                                    $query="select u.id,id_tai_khoan,ho_ten,gioi_tinh,sdt,ngay_sinh,username,u.email,password,phan_quyen from account a,user u where a.id=u.id_tai_khoan";
+                                    $result=mysqli_query($conn,$query);
+                                    if($result)
+                                    {
+                                        echo "<table id='tblMain'><thead>";
+                                        echo "<th>Mã người dùng</th><th>Họ tên</th><th>Thông tin</th><th>Mã tài khoản</th><th>Tên đăng nhập</th><th>Mật khẩu</th><th>Phân quyền</th><th>Thao tác</th>";
+                                        echo "</thead>";
+                                        while($row=mysqli_fetch_assoc($result))
+                                        {
+                                            echo "<tr>";
+                                            echo "<td>".$row["id"]."</td>";
+                                            echo "<td>".$row["ho_ten"]."</td>";
+                                            echo "<td>";
+                                            echo "Ngày sinh: ".$row["ngay_sinh"]."</br>";
+                                            if($row["gioi_tinh"]==0)
+                                            {
+                                                echo "Giới tính: Nam";
                                             }
-                                        echo '</table>';
-                                        
-                                        
+                                            else
+                                            {
+                                                echo "Giới tính: Nữ";
+                                            }
+                                            echo "</br>";
+                                            echo "Số điện thoại: ".$row["sdt"]."</br>";
+                                            echo "Email: ".$row["email"];
+                                            echo "</td>";
+                                            echo "<td>".$row["id_tai_khoan"]."</td>";
+                                            echo "<td>".$row["username"]."</td>";
+                                            echo "<td>".$row["password"]."</td>";
+                                            if($row["phan_quyen"]==0)
+                                            {
+                                                echo "<td>user</td>";
+                                            }
+                                            else if($row["phan_quyen"]==1)
+                                            {
+                                                echo "<td>admin</td>";
+                                            }
+                                            else
+                                            {
+                                                echo "";
+                                            }
+                                            echo "<td>"."<a href='updateAccount.php?id=".$row["id"]."' class='btntrangthai'>Cập nhật</a>"."</td>";
+                                            echo "</tr>";
+                                        }
+                                        echo "</table>";
                                     }
-                                    else {
-                                        echo 'dữ liệu trống';
+                                    else
+                                    {
+                                        echo "Không có bản ghi !";
                                     }
                                 }
-                                else {
-                                    echo 'Kết nối thất bại',mysqli_connect_errno();
+                                else
+                                {
+                                    echo "Kết nối không thành công !". mysqli_connect_error();
                                 }
+                                mysqli_close($conn);
                             ?>
 
                                     <?php
@@ -207,52 +207,61 @@
                                         function Searchbyname(){
                                             echo "<script type='text/javascript'>var Main=document.getElementById('tblMain');Main.innerHTML=''</script>";
                                
-                                            $key = $_POST['txt-search_donhang'];
+                                            $key = $_POST['txt-search_hoTen'];
                                             
-                                            echo "<script type='text/javascript'>var txt-search_donhang=document.getElementById('txt-search_donhang');txt-search_donhang.value='".$key."'</script>";
+                                            echo "<script type='text/javascript'>var txt-search=document.getElementById('txtHoTen');txt-search.value='".$key."'</script>";
                                             $conn = mysqli_connect("localhost","root","","sellingbook");
                                            if ($conn == true) {
                                
-                                           $query = "SELECT * FROM bill WHERE trang_thai LIKE N'%".$key."%'";
+                                           $query = "select u.id,id_tai_khoan,ho_ten,gioi_tinh,sdt,ngay_sinh,username,email,password,phan_quyen from account a,user u where a.id=u.id_tai_khoan and ho_ten like N'%".$key."%'";
                                            $result = mysqli_query($conn,$query);
-                                           if (mysqli_num_rows($result)>0) {
-                                                echo '<table id="tblMain"><thead>';
-                                               echo '<th>id</th><th>id người mua</th><th>Thời gian đặt</th><th>Thời gian nhận</th><th>Trạng thái</th><th>Tổng tiền</th><th>Thao tác</th>';
-                                               echo "</thead>";
-                               
-                                               while($row=mysqli_fetch_assoc($result))
+                                           if(mysqli_num_rows($result)>0)
                                            {
-                                            echo '<tr>';
-                                            echo '<td>'.$row['id'].'</td>';
-                                            
-                                            echo '<td>'.$row['id_nguoimua'].'</td>';
-                                            echo '<td>'.$row['thoi_gian_dat'].'</td>';
-                                            echo '<td>'.$row['thoi_gian_nhan'].'</td>';
-                                            if ($row['trang_thai'] == 0) {
-                                                echo '<td>Chờ xác nhận</td>';
-                                            }
-                                            else if ($row['trang_thai'] == 1) {
-                                                echo '<td>Đã đóng gói</td>';
-                                            }
-                                            else if ($row['trang_thai'] == 2) {
-                                                echo '<td>Đang vận chuyển</td>';
-                                            }
-                                            else if ($row['trang_thai'] == 3) {
-                                                echo '<td>Đã hoàn thành</td>';
-                                            }
-                                            else if ($row['trang_thai'] == 4) {
-                                                echo '<td></td>';
-                                            }
-                                            echo '<td>'.$row['tong_tien'].'</td>';
-                                            echo "<td>".
-                                                 "<a  href='updatetrangthai.php?id=".$row['id']."' class='btntrangthai'>Thay đổi đơn hàng</a>";
-                                                "</td>";
-                                                // ." "."<a onclick='return confirm(\"Bạn có muốn xóa không?\")' href='delete.php?id=".$row['id']."' class='btntrangthai'>Hủy đơn hàng</a>".
-                                    echo '</tr>';
+                                               echo "<table><thead>";
+                                               echo "<th>Mã người dùng</th><th>Họ tên</th><th>Thông tin</th><th>Mã tài khoản</th><th>Tên đăng nhập</th><th>Mật khẩu</th><th>Phân quyền</th><th>Thao tác</th>";
+                                               echo "</thead>";
+                                               while($row=mysqli_fetch_assoc($result))
+                                               {
+                                                   echo "<tr>";
+                                                   echo "<td>".$row["id"]."</td>";
+                                                   echo "<td>".$row["ho_ten"]."</td>";
+                                                   echo "<td>";
+                                                   echo "Ngày sinh: ".$row["ngay_sinh"]."</br>";
+                                                   if($row["gioi_tinh"]==0)
+                                                   {
+                                                       echo "Giới tính: Nam";
+                                                   }
+                                                   else
+                                                   {
+                                                       echo "Giới tính: Nữ";
+                                                   }
+                                                   echo "</br>";
+                                                   echo "Số điện thoại: ".$row["sdt"]."</br>";
+                                                   echo "Email: ".$row["email"];
+                                                   echo "</td>";
+                                                   echo "<td>".$row["id_tai_khoan"]."</td>";
+                                                   echo "<td>".$row["username"]."</td>";
+                                                   echo "<td>".$row["password"]."</td>";
+                                                   if($row["phan_quyen"]==0)
+                                                   {
+                                                       echo "<td>user</td>";
+                                                   }
+                                                   else if($row["phan_quyen"]==1)
+                                                   {
+                                                       echo "<td>admin</td>";
+                                                   }
+                                                   else
+                                                   {
+                                                       echo "";
+                                                   }
+                                                   echo "<td>"."<a href='updateAccount.php?id=".$row["id"]."' class='btntrangthai'>Cập nhật</a>"."</td>";
+                                                   echo "</tr>";
+                                               }
+                                               echo "</table>";
                                            }
-                                           echo "</table>";
-                                           }else{
-                                               echo "không có đơn hàng";
+                                           else
+                                           {
+                                               echo "Không có bản ghi !";
                                            }
                                            
                                        }
@@ -261,7 +270,6 @@
                                        }
                                         }
                                     ?>
-                                    <button id="xuatfile" class="app__btn" style="border: none; margin-top: 12px;">Xuất excel</button>
                             </div>
                         </div>
                     </div>
@@ -274,18 +282,7 @@
         </footer>
         
     </div>
-
-    <script src="../assets/js/main_base.js"></script>
-    <script src="../assets/js/jquery.table2excel.min.js"></script>
     
 </body>
-<script>
-    $("#xuatfile").click(function(){
-    $("#tblMain").table2excel({
-    name: "Worksheet Name",
-    filename: "Đơn hàng",
-    fileext: ".xls"
-    }) 
-    });
-</script>
+
 </html>

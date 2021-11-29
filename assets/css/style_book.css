@@ -157,3 +157,28 @@
     width: 20px;
     text-align: center;
 }
+
+.row2__title{
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    font-weight: 600;
+    margin-top: 24px;
+}
+.row2__introduce p{
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    font-weight: 600;
+    text-align: center;
+    color:  #A52A2A ; 
+}
+.row2__introduce span{
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+    .app-content-info__btn span {
+        padding: 8px 0px;
+    }
+}

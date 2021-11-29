@@ -82,6 +82,7 @@ function showEdit(id) {
     document.getElementById('book-quantity').value = book.so_luong;
     document.getElementById('book-description').value = book.mo_ta;
     document.querySelector('.modal-input__img img').src = `../assets/images/${book.anh}`;
+    document.getElementById('book-img').value = book.anh;
 }
 
 function showCreate() {
@@ -164,6 +165,32 @@ function loadListCate() {
     cateDOM.value = 0;
 }
 
+// Choose file
+document.getElementById('book-img').onchange = function (event) {
+    document.getElementById('image-change').setAttribute('src', URL.createObjectURL(event.target.files[0]))
+}
+
+// Upload image
+function uploadImage(id) {
+    var formDOM = document.querySelector('.modal__input form');
+    var formUpload = new FormData(formDOM);
+    formUpload.append('submit', 'submit');
+    formUpload.append('id', id);
+
+    var http = new XMLHttpRequest();
+
+    http.open('POST', path + 'admin/api/upload-image.php');
+
+    http.send(formUpload);
+
+    http.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            getDataBook();
+        }
+    }
+}
+
 // Load pagination
 function loadPagination() {
     var http = new XMLHttpRequest();
@@ -223,7 +250,14 @@ function loadPaginationToView(numberBook) {
         if (value.innerHTML == page) {
             value.classList.add('current-page');
         }
-    })
+    });
+
+    // Somethings
+    document.querySelector('.go-to-admin').href = 'home.html';
+    document.querySelector('.go-to-admin').innerHTML = `
+        <i class="fas fa-shopping-bag"></i>
+        <p>Quay về trang mua sắm</p>
+        `;
 }
 
 // Create - Update - Delete book
@@ -238,7 +272,7 @@ function editBook(method) {
         giam_gia: document.getElementById('book-sale').value,
         so_luong: document.getElementById('book-quantity').value,
         mo_ta: document.getElementById('book-description').value.trim(),
-        anh: document.querySelector('.modal-input__img img').src.split('/')[7]
+        anh: ''
     }
 
     var http = new XMLHttpRequest();
@@ -251,6 +285,7 @@ function editBook(method) {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
             if (method == 'POST') {
+                uploadImage(this.responseText);
                 showToast({
                     message: `Bạn đã thêm sách thành công: ${book.ten_sach}`,
                     type: 'success',
@@ -258,6 +293,7 @@ function editBook(method) {
                 });
             }
             else if (method == 'PUT') {
+                uploadImage(book.id);
                 showToast({
                     message: `Bạn đã cập nhật sách thành công: ${book.ten_sach}`,
                     type: 'success',
@@ -279,6 +315,7 @@ function editBook(method) {
                 type: 'error',
                 duration: 2000
             });
+            getDataBook();
         }
     }
 }

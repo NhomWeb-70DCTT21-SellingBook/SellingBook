@@ -28,7 +28,7 @@ function loadHeader() {
         <span class="material-icons-outlined">card_giftcard</span>
         <p>Ưu đãi & tiện ích</p>
     </a>
-    <a href="#" class="app-header-navbar__item">
+    <a href="purchase.php" class="app-header-navbar__item">
         <span class="material-icons-outlined">inventory</span>
         <p>Kiểm tra đơn hàng</p>
     </a>
@@ -80,15 +80,23 @@ function getListUser() {
 function loadListUsers(users) {
     var chatDOM = document.querySelector('.app-content-body-list-chat__navbar');
     chatDOM.innerHTML = '';
-
+    
     var user = users.find(function(value) {
         return value.email == 'admin@gmail.com';
     });
 
-    var usersTmp = users.filter(function(value) {
-        return value.id != user.id;
-    });
-    usersTmp.unshift(user);
+    var usersTmp;
+    if(user) {
+        usersTmp = users.filter(function(value) {
+            return value.id != user.id;
+        });
+        usersTmp.unshift(user);
+    }
+    else {
+        usersTmp = users;
+        user = {};
+        user.id = -1;
+    }
 
     usersTmp.forEach(function(value) {
         if(value.id == user.id) {
@@ -163,6 +171,10 @@ function loadMessage(messages) {
 
 // Send message
 function sendMessage() {
+    if(document.getElementById('txtmessage').value == '') {
+        return;
+    }
+
     var data = {
         idNguoiGui: account.id,
         idNguoiNhan: idNguoiNhan,

@@ -1,34 +1,5 @@
 // Declare variable
-var categories = [
-    {
-        id: 1,
-        name: 'Truyện tranh',
-    },
-    {
-        id: 2,
-        name: 'Kinh tế',
-    },
-    {
-        id: 3,
-        name: 'Xã hội',
-    },
-    {
-        id: 4,
-        name: 'Văn hóa - Chính trị',
-    },
-    {
-        id: 5,
-        name: 'Ngoại ngữ',
-    },
-    {
-        id: 6,
-        name: 'Công nghệ',
-    },
-    {
-        id: 7,
-        name: 'Lập trình',
-    }
-];
+var categories = [];
 
 var url = window.location.href.split('/');
 url.pop();
@@ -36,13 +7,29 @@ url.pop();
 url.push('PHP')
 var path = url.join('/') + '/';
 
+// Get data
+function getDataCate() {
+    var http = new XMLHttpRequest();
+
+    http.open('GET', path + `api/get-datacate.php`, true);
+
+    http.send();
+
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            categories = JSON.parse(this.responseText);
+            loadCategory();
+        }
+    }
+}
+
 // Set action for category box
 function loadCategory() {
     var cateDOM = document.querySelector('.app-header-main-search-filter__choose');
     cateDOM.innerHTML = '<li class="app-header-main-search-filter-choose__item active-color" onclick="categoryChange(-1, 0)">Tất cả</li>';
 
     categories.forEach(function (value, index) {
-        cateDOM.innerHTML += `<li class="app-header-main-search-filter-choose__item" onclick="categoryChange(${index}, ${value.id})">${value.name}</li>`;
+        cateDOM.innerHTML += `<li class="app-header-main-search-filter-choose__item" onclick="categoryChange(${index}, ${value.id})">${value.ten_danhmuc}</li>`;
     });
 }
 
@@ -74,6 +61,37 @@ function GetURLParameter(sParam) {
     return -1;
 }
 
+// Authorization
+function authorization() {
+    var http = new XMLHttpRequest();
+
+    http.open('GET', path + `api/get-authorization.php`, true);
+
+    http.send();
+
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            if(this.responseText == 'ADMIN') {
+                var bodyDOM = document.querySelector('body');
+            
+                var btnGoToAdmin = document.createElement('a');
+                btnGoToAdmin.classList.add('go-to-admin');
+                btnGoToAdmin.href = 'admin.html';
+                btnGoToAdmin.innerHTML = `
+                <i class="fas fa-tools"></i>
+                <p>Quay về trang quản trị</p>
+                `;
+                bodyDOM.appendChild(btnGoToAdmin);
+            }
+            else {
+
+            }
+        }
+    }
+}
+
 
 // Call function
-loadCategory();
+getDataCate();
+authorization();

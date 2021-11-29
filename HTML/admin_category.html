@@ -2,6 +2,31 @@
 <html lang="en">
 
 <head>
+    <script>
+        var url = window.location.href.split('/');
+        url.pop();
+        url.pop();
+        url.push('PHP')
+        var path = url.join('/') + '/';
+
+        var http = new XMLHttpRequest();
+
+        http.open('GET', path + `api/get-authorization.php`, true);
+
+        http.send();
+
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                if (this.responseText == 'ADMIN') {
+
+                }
+                else {
+                    window.location.href = 'home.html';
+                }
+            }
+        }
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +38,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Poppins:display=swap|Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/grid.css">
     <link rel="stylesheet" href="../assets/css/style_admin.css">
@@ -33,7 +58,7 @@
                         <span class="material-icons-outlined">search</span>
                         <input type="text" id="txt-search" name="txt-search" placeholder="Bạn muốn tìm gì?">
                     </div>
-                    <a href="#" class="app-header__logout">
+                    <a href="logout.php" class="app-header__logout">
                         <span class="material-icons-outlined">logout</span>
                         <p class="hide-on-moblie">Đăng xuất</p>
                     </a>
@@ -84,7 +109,7 @@
                                     </a>
                                 </li>
                                 <li class="app-container-menu-control__item">
-                                    <a href="#">
+                                    <a href="quanLyTaiKhoan.php">
                                         <span class="material-icons-outlined">manage_accounts</span>
                                         Quản lý tài khoản
                                     </a>
@@ -112,12 +137,14 @@
                                 <div class="app-header__search" style="background-color: transparent;">
                                     <span class="material-icons-outlined">search</span>
                                     <input type="hidden" name="id-cate" id="id-cate" value="">
-                                    <input type="text" id="txt-search" name="txt-search" placeholder="Nhập mã danh mục hoặc tên danh mục muốn tìm...">
+                                    <input type="text" id="txt-search" name="txt-search"
+                                        placeholder="Nhập mã danh mục hoặc tên danh mục muốn tìm...">
                                 </div>
                             </div>
                             <div class="app-container-content__search-text active-color">Nội dung tìm kiếm: AAA</div>
                             <div class="app-container-content__btn-add">
-                                <label for="cbo-show-modal" class="app__btn" onclick="showCreate()" style="display: inline-block;">+ Thêm mới danh mục</label>
+                                <label for="cbo-show-modal" class="app__btn" onclick="showCreate()"
+                                    style="display: inline-block;">+ Thêm mới danh mục</label>
                             </div>
                             <div class="app-container-content__list">
                                 <table>
@@ -149,15 +176,19 @@
                                                         <div class="modal-input__group">
                                                             <i class="fas fa-book"></i>
                                                             <input type="hidden" name="cate-id" id="cate-id">
-                                                            <input type="text" name="cate-name" id="cate-name" placeholder="Nhập tên danh mục..." required>
+                                                            <input type="text" name="cate-name" id="cate-name"
+                                                                placeholder="Nhập tên danh mục..." required>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-input__btn">
-                                                <span class="hide-on-edit" style="flex: 1;" onclick="editCate('POST')">Thêm mới</span>
-                                                <span class="hide-on-create" style="flex: 2;" onclick="editCate('PUT')">Cập nhật</span>
-                                                <span class="hide-on-create" style="flex: 1;" onclick="editCate('DELETE')">Xóa</span>
+                                                <span class="hide-on-edit" style="flex: 1;"
+                                                    onclick="editCate('POST')">Thêm mới</span>
+                                                <span class="hide-on-create" style="flex: 2;"
+                                                    onclick="editCate('PUT')">Cập nhật</span>
+                                                <span class="hide-on-create" style="flex: 1;"
+                                                    onclick="editCate('DELETE')">Xóa</span>
                                             </div>
                                         </form>
                                     </label>

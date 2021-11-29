@@ -2,6 +2,31 @@
 <html lang="en">
 
 <head>
+    <script>
+        var url = window.location.href.split('/');
+        url.pop();
+        url.pop();
+        url.push('PHP')
+        var path = url.join('/') + '/';
+        
+        var http = new XMLHttpRequest();
+
+        http.open('GET', path + `api/get-authorization.php`, true);
+
+        http.send();
+
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                if (this.responseText == 'ADMIN') {
+
+                }
+                else {
+                    window.location.href = 'home.html';
+                }
+            }
+        }
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +38,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Poppins:display=swap|Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/grid.css">
     <link rel="stylesheet" href="../assets/css/style_admin.css">
@@ -33,7 +58,7 @@
                         <span class="material-icons-outlined">search</span>
                         <input type="text" id="txt-search" name="txt-search" placeholder="Bạn muốn tìm gì?">
                     </div>
-                    <a href="#" class="app-header__logout">
+                    <a href="logout.php" class="app-header__logout">
                         <span class="material-icons-outlined">logout</span>
                         <p class="hide-on-moblie">Đăng xuất</p>
                     </a>
@@ -84,7 +109,7 @@
                                     </a>
                                 </li>
                                 <li class="app-container-menu-control__item">
-                                    <a href="#">
+                                    <a href="quanLyTaiKhoan.php">
                                         <span class="material-icons-outlined">manage_accounts</span>
                                         Quản lý tài khoản
                                     </a>
@@ -112,7 +137,8 @@
                                 <div class="app-header__search" style="background-color: transparent;">
                                     <span class="material-icons-outlined">search</span>
                                     <input type="hidden" name="id-cate" id="id-cate" value="">
-                                    <input type="text" id="txt-search" name="txt-search" placeholder="Nhập mã sách hoặc tên sách muốn tìm...">
+                                    <input type="text" id="txt-search" name="txt-search"
+                                        placeholder="Nhập mã sách hoặc tên sách muốn tìm...">
                                 </div>
                                 <!-- Re-use header filter home page -->
                                 <div class="app-header-main-search__filter">
@@ -132,9 +158,11 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="app-container-content__search-text active-color">Nội dung tìm kiếm: AAA - Danh mục: Tất cả</div>
+                            <div class="app-container-content__search-text active-color">Nội dung tìm kiếm: AAA - Danh
+                                mục: Tất cả</div>
                             <div class="app-container-content__btn-add">
-                                <label for="cbo-show-modal" class="app__btn" onclick="showCreate()" style="display: inline-block;">+ Thêm mới sách</label>
+                                <label for="cbo-show-modal" class="app__btn" onclick="showCreate()"
+                                    style="display: inline-block;">+ Thêm mới sách</label>
                             </div>
                             <div class="app-container-content__list">
                                 <table>
@@ -154,7 +182,7 @@
                                 <label for="cbo-show-modal" class="modal">
                                     <!-- Prefix class: create: modal__input-create; edit: modal__input-edit -->
                                     <label for="none" class="modal__input modal__input-edit">
-                                        <form action="" method="POST">
+                                        <form action="" method="POST" enctype="multipart/form-data">
                                             <div class="modal-input__text hide-on-create">
                                                 <h2>Chi tiết thông tin sách!</h2>
                                                 <p>Bạn có thể cập nhật hoặc xóa sách</p>
@@ -164,64 +192,79 @@
                                                 <p>Bạn có thể thêm sách</p>
                                             </div>
                                             <div class="row">
-                                                <div class="col l-8">
+                                                <div class="col l-8 m-8 c-12">
                                                     <div class="modal-input__info">
                                                         <div class="modal-input__group">
                                                             <i class="fas fa-book"></i>
                                                             <input type="hidden" name="id" id="book-id">
-                                                            <input type="text" name="book-name" id="book-name" placeholder="Nhập tên sách..." required>
+                                                            <input type="text" name="book-name" id="book-name"
+                                                                placeholder="Nhập tên sách..." required>
                                                         </div>
                                                         <div class="modal-input__group">
                                                             <i class="fas fa-user-shield"></i>
-                                                            <input type="text" name="book-author" id="book-author" placeholder="Nhập tác giả..." required>
+                                                            <input type="text" name="book-author" id="book-author"
+                                                                placeholder="Nhập tác giả..." required>
                                                         </div>
                                                         <div class="modal-input__group">
                                                             <i class="fas fa-bookmark"></i>
                                                             <select name="book-cate" id="book-cate"></select>
                                                         </div>
-                                                        <div class="modal-input__group" style="gap: 0 4px; background-color: transparent;">
+                                                        <div class="modal-input__group"
+                                                            style="gap: 0 4px; background-color: transparent;">
                                                             <div class="modal-input__group" style="margin: 0;">
                                                                 <i class="fas fa-money-bill-alt"></i>
-                                                                <input type="text" name="book-current-price" id="book-current-price" placeholder="Nhập giá bán..." required>
+                                                                <input type="text" name="book-current-price"
+                                                                    id="book-current-price"
+                                                                    placeholder="Nhập giá bán..." required>
                                                             </div>
                                                             <div class="modal-input__group" style="margin: 0;">
                                                                 <i class="far fa-money-bill-alt"></i>
-                                                                <input type="text" name="book-old-price" id="book-old-price" placeholder="Nhập giá chưa giảm..." required>
+                                                                <input type="text" name="book-old-price"
+                                                                    id="book-old-price"
+                                                                    placeholder="Nhập giá chưa giảm..." required>
                                                             </div>
                                                         </div>
                                                         <div class="modal-input__group">
                                                             <i class="fas fa-ticket-alt"></i>
-                                                            <input type="text" name="book-sale" id="book-sale" placeholder="Nhập phần trăm giảm giá..." required>
+                                                            <input type="text" name="book-sale" id="book-sale"
+                                                                placeholder="Nhập phần trăm giảm giá..." required>
                                                         </div>
                                                         <div class="modal-input__group">
                                                             <i class="fas fa-sort-numeric-up-alt"></i>
-                                                            <input type="text" name="book-quantity" id="book-quantity" placeholder="Nhập số lượng..." required>
+                                                            <input type="text" name="book-quantity" id="book-quantity"
+                                                                placeholder="Nhập số lượng..." required>
                                                         </div>
                                                         <div class="modal-input__group">
                                                             <i class="fas fa-file-alt"></i>
-                                                            <input type="text" name="book-description" id="book-description" placeholder="Nhập mô tả..." required>
+                                                            <input type="text" name="book-description"
+                                                                id="book-description" placeholder="Nhập mô tả..."
+                                                                required>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col l-4">
+                                                <div class="col l-4 m-4 c-12">
                                                     <div class="modal-input__img">
                                                         <input type="file" name="book-img" id="book-img" hidden>
-                                                        <img src="../assets/images/tho-peter-cuoc-giai-cuu-ngay-giang-sinh_32047_1.png" alt="">
-                                                        <span class="app__btn">Chọn ảnh</span>
+                                                        <img id="image-change" src="../assets/images/tho-peter-cuoc-giai-cuu-ngay-giang-sinh_32047_1.png"
+                                                            alt="">
+                                                        <span class="app__btn" onclick="document.getElementById('book-img').click()">Chọn ảnh</span>
                                                         <p>(Kích thước ảnh tối đa 1MB)</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-input__btn">
-                                                <span class="hide-on-edit" style="flex: 1;" onclick="editBook('POST')">Thêm mới</span>
-                                                <span class="hide-on-create" style="flex: 2;" onclick="editBook('PUT')">Cập nhật</span>
-                                                <span class="hide-on-create" style="flex: 1;" onclick="editBook('DELETE')">Xóa</span>
+                                                <span class="hide-on-edit" style="flex: 1;"
+                                                    onclick="editBook('POST')">Thêm mới</span>
+                                                <span class="hide-on-create" style="flex: 2;"
+                                                    onclick="editBook('PUT')">Cập nhật</span>
+                                                <span class="hide-on-create" style="flex: 1;"
+                                                    onclick="editBook('DELETE')">Xóa</span>
                                             </div>
                                         </form>
                                     </label>
                                 </label>
                             </div>
-                            
+
                             <div class="grid wide">
                                 <div class="row">
                                     <div class="col l-12 m-12 c-12">

@@ -38,6 +38,7 @@ html {
     color: var(--primary-color) !important;
 }
 
+.go-to-admin,
 .go-to-message,
 .up-top {
     position: fixed;
@@ -66,17 +67,31 @@ html {
 .go-to-message {
     bottom: 8vh;
     left: 28px;
-    border-radius: 16px;
+    border-radius: 14px;
     border-bottom-left-radius: 4px;
     overflow: hidden;
 }
 
+.go-to-admin {
+    left: 50%;
+    bottom: 32px;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.go-to-admin p,
 .go-to-message p {
     line-height: 1.8rem;
 }
 
 .up-top:hover {
     opacity: .9;
+}
+
+.go-to-admin:hover {
+    width: 200px;
+    height: 80px;
 }
 
 .go-to-message:hover {

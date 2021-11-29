@@ -17,7 +17,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $role == 'ADMIN') {
     $result = mysqli_query($conn, $query);
     
     if($result) {
-        echo 'Thêm sách thành công';
+        $query = "SELECT * FROM book ORDER BY id DESC LIMIT 1";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+
+        echo $row['id'];
     }
     else {
         echo 'Thêm sách thất bại';

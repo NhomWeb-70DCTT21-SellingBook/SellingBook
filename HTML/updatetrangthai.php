@@ -48,14 +48,14 @@
                     <ul class="app-content__linker-wrapper">
                         <li><a href="#"><span class="material-icons-outlined">home</span>Trang chủ</a></li>
                         <li><a href="#">/ Quản trị</a></li>
-                        <li><a href="#">/ Quản lý đơn đặt hàng</a></li>
+                        <li><a href="#">/ Quản lý thông tin sách</a></li>
                     </ul>
                 </div>
             </div>
             <div class="grid wide">
                 <div class="row">
                     <div class="col l-3 m-12 c-12">
-                    <div class="app-container__menu">
+                        <div class="app-container__menu">
                             <div class="app-container-menu__user">
                                 <div class="app-container-menu-user__img">
                                     <img src="../assets/images/5ef966aae04712194b56.jpg" alt="user-image">
@@ -66,28 +66,16 @@
                                 </div>
                             </div>
                             <ul class="app-container-menu__control">
-                                <li class="app-container-menu-control__item">
-                                    <a href="http://localhost/LearnPHP/SellingBook/HTML/admin.html">
+                                <li class="app-container-menu-control__item active-color">
+                                    <a href="#">
                                         <span class="material-icons-outlined">book</span>
                                         Quản lý thông tin sách
                                     </a>
                                 </li>
-                                <li class="app-container-menu-control__item">
-                                    <a href="http://localhost/LearnPHP/SellingBook/HTML/admin_category.html">
-                                        <span class="material-icons-outlined">category</span>
-                                        Quản lý danh mục sách
-                                    </a>
-                                </li>
-                                <li class="app-container-menu-control__item active-color">
-                                    <a href="http://localhost/LearnPHP/SellingBook/PHP/quanlybanhang.php">
+                                <li class="app-container-menu-control__item" >
+                                    <a href="#">
                                         <span class="material-icons-outlined">inventory</span>
                                         Quản lý đơn đặt hàng
-                                    </a>
-                                </li>
-                                <li class="app-container-menu-control__item">
-                                    <a href="#">
-                                        <span class="material-icons-outlined">manage_accounts</span>
-                                        Quản lý tài khoản
                                     </a>
                                 </li>
                                 <li class="app-container-menu-control__item">
@@ -114,13 +102,19 @@
                                 $id = $_GET['id'];
                                 $conn = mysqli_connect('localhost', 'root', '', 'sellingbook');
                                 if ($conn) {
-                                    $query = "SELECT * FROM bill WHERE id = '" . $id . "'";
-                            
+                                    //$query = "SELECT * FROM bill WHERE id = '" . $id . "'";
+                                    $query = "SELECT * FROM bill l,customer c,address d WHERE l.id_nguoimua = c.id and d.id = c.id_diachi and l.id =  '" . $id . "'";
                                     $result = mysqli_query($conn, $query);
                                     if (mysqli_num_rows($result) > 0) {
                                         while ($row = mysqli_fetch_assoc($result)) {
-                                            $id_nguoiban =  $row['id_nguoiban'];
                                             $id_nguoimua = $row['id_nguoimua'];
+                                            $ho_ten = $row['ho_ten'];
+                                            $sdt = $row['sdt'];
+                                            $thong_tin_them = $row['thong_tin_them'];
+                                            $tinh_tp = $row['tinh_tp'];
+                                            $quan_huyen = $row['quan_huyen'];
+                                            $xa_phuong = $row['xa_phuong'];
+                                            $so_nha = $row['so_nha'];
                                             $thoi_gian_dat = $row['thoi_gian_dat'];
                                             $thoi_gian_nhan = $row['thoi_gian_nhan'];
                                             $trang_thai = $row['trang_thai'];
@@ -139,28 +133,72 @@
                             <form action="" method="POST">
                                 <table>
                                     <tr>
-                                        <td>ID người bán hàng:</td>
-                                        <td>
-                                            <input type="text" class="input_tpye" name="id_nguoiban" id="id_nguoiban" required value="<?php echo $id_nguoiban;?>" readonly>
-                                        </td>
+                                        <td style="font-size: 20px; font-weight: bold; color: orange;">Thông tin người mua hàng:</td>
                                     </tr>
                                     <tr>
-                                        <td>ID người mua:</td>
+                                        <td>ID:</td>
                                         <td>
                                             <input type="text" class="input_tpye" name="id_nguoimua" id="id_nguoimua" required value="<?php echo $id_nguoimua;?>" readonly>
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Họ tên:</td>
+                                        <td>
+                                            <input type="text" class="input_tpye" name="ho_ten" id="ho_ten" required value="<?php echo $ho_ten;?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số điện thoại:</td>
+                                        <td>
+                                            <input type="text" class="input_tpye" name="sdt" id="sdt" required value="<?php echo $sdt;?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thông tin thêm:</td>
+                                        <td>
+                                            <input type="text" class="input_tpye" name="thong_tin_them" id="thong_tin_them" required value="<?php echo $thong_tin_them;?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tỉnh:</td>
+                                        <td>
+                                            <input type="text" class="input_tpye" name="tinh_tp" id="tinh_tp" required value="<?php echo $tinh_tp;?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quận / Huyện:</td>
+                                        <td>
+                                            <input type="text" class="input_tpye" name="quan_huyen" id="quan_huyen" required value="<?php echo $quan_huyen;?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Xã / Phường:</td>
+                                        <td>
+                                            <input type="text" class="input_tpye" name="xa_phuong" id="xa_phuong" required value="<?php echo $xa_phuong;?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số Nhà:</td>
+                                        <td>
+                                            <input type="text" class="input_tpye" name="so_nha" id="so_nha" required value="<?php echo $so_nha;?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 20px; font-weight: bold; color: orange;">Thông tin đơn hàng:</td>
+                                    </tr>
+                                    <tr>
                                         <td>Thời gian đặt hàng:</td>
                                         <td>
-                                            <input type="date" class="input_tpye" name="thoi_gian_dat" id="thoi_gian_dat" required value="<?php echo $thoi_gian_dat;?>" readonly>
+                                            <input type="datetime" class="input_tpye" name="thoi_gian_dat" id="thoi_gian_dat" required value="<?php echo $thoi_gian_dat;?>" readonly>
                                         </td>
                                     </tr>
                                     
                                     <tr>
                                         <td>Thời gian nhận hàng:</td>
                                         <td>
-                                            <input type="date" class="input_tpye" name="thoi_gian_nhan" id="thoi_gian_nhan" required value="<?php echo $thoi_gian_nhan;?>" readonly>
+                                            
+                                            <input type="datetime" class="input_tpye" name="thoi_gian_nhan" id="thoi_gian_nhan" value="<?php echo $thoi_gian_nhan;?>" required  readonly>
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -191,6 +229,7 @@
                                                     <option value='1'>Đã đóng gói</option>
                                                     <option value='2'>Đang vận chuyển</option>
                                                     <option value='3' selected=''>Đã hoàn thành</option>";
+
                                                 }
                                             ?>
                                             </select>
@@ -219,21 +258,33 @@
                                 
                                 function updatedata() {
                                     $id = $_GET['id'];
-                                    $id_nguoiban = $_POST['id_nguoiban'];
+                                    
                                     $id_nguoimua = $_POST['id_nguoimua'];
                                     $thoi_gian_dat = $_POST['thoi_gian_dat'];
                                     $thoi_gian_nhan = $_POST['thoi_gian_nhan'];
                                     $trang_thai = $_POST['trang_thai'];
                                     $tong_tien = $_POST['tong_tien'];
+
+                                    // $thoigian = date("Y-m-d H:i:s");
+                                    // if($trang_thai==3){
+                                        
+                                    //     $thoi_gian_nhan = $thoigian;
+                                    // }
+                                    // else 
+                                    // $thoi_gian_nhan = date("0-0-0-0-0-0");
+
                                     $conn = mysqli_connect('localhost', 'root', '', 'sellingbook');
                                 
                                     if ($conn) {
-                                        $query = "UPDATE bill SET id_nguoiban ='".$id_nguoiban."', id_nguoimua ='".$id_nguoimua."', thoi_gian_dat ='".$thoi_gian_dat."', thoi_gian_nhan ='".$thoi_gian_nhan."', trang_thai ='".$trang_thai."', tong_tien ='".$tong_tien."' WHERE id ='".$id."'";
+                                        $query = "UPDATE bill l,customer c,address d SET id_nguoimua ='".$id_nguoimua."', thoi_gian_dat ='".$thoi_gian_dat."', thoi_gian_nhan = NOW() , trang_thai ='".$trang_thai."', tong_tien ='".$tong_tien."' WHERE l.id_nguoimua = c.id and d.id = c.id_diachi and l.id ='".$id."'";
                                         $result = mysqli_query($conn, $query);
                                         if ($result) {
-                                            echo 'Sửa sinh viên thành công!';
+                                            echo '<script>
+                                            alert("sửa thông tin thành công")
+                                            
+                                        </script>';
                                         } else {
-                                            echo 'Sửa sinh viên không thành công!';
+                                            echo 'Sửa đơn hàng không thành công!';
                                         }
                                     } else {
                                         echo 'Kết nối thất bại', mysqli_connect_errno();

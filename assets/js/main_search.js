@@ -54,7 +54,7 @@ function loadHeader() {
 
     if(account) {
         headerDOM.innerHTML += `
-        <a href="#" class="app-header-navbar__item">
+        <a href="thongtinbandoc.php" class="app-header-navbar__item">
             <span class="material-icons-outlined">account_circle</span>
             <p>${account.email}</p>
         </a>
@@ -190,7 +190,7 @@ function loadCart() {
 // Render data books
 function renderBooks() {
     var category = categories.find(function(category) {return category.id == cate});
-    document.getElementById('view-cate').innerText = (cate == 0) ? 'Tất cả' : category.name;
+    document.getElementById('view-cate').innerText = (cate == 0) ? 'Tất cả' : category.ten_danhmuc;
     document.getElementById('view-search').innerText = txtSearch;
 
     var listBooksDOM = document.querySelector('.app-content-books__list');
@@ -205,7 +205,7 @@ function renderBooks() {
 
         col.innerHTML = `
         <div class="app-content-books__container">
-            <a href="#" class="app-content-books__item">
+            <a href="get-inforbook.php?maSach=${value.id}" class="app-content-books__item">
                 <div class="app-content-books-item__img">
                     <img src="../assets/images/${value.anh}" alt="">
                 </div>
@@ -231,7 +231,7 @@ function renderBooks() {
                     <span onclick="addToCart(${value.id})">Thêm vào giỏ hàng</span>
                 </div>
                 <div class="app-content-books-pop-up__btn">
-                    <a href="#">Xem chi tiết</a>
+                    <a href="get-inforbook.php?maSach=${value.id}">Xem chi tiết</a>
                 </div>
             </div>
         </div>
@@ -303,7 +303,9 @@ function loadPaginationToView(numberBook) {
         if(value.innerHTML == page) {
             value.classList.add('current-page');
         }
-    })
+    });
+
+    document.querySelector('.app-content-books__text').innerText = `Kết quả tìm kiếm: ${numberBook} sản phẩm`;
 }
 
 
