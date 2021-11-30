@@ -7,7 +7,7 @@ var wards = [];
 function getDataProvinces() {
     // AJAX
     var http = new XMLHttpRequest();
-
+    // Client -> Server -> Client
     // method: GET, POST, PUT, DELETE - POST: create , PUT: update, DELETE: delete
     http.open('GET', path + 'api/get-dataprovince.php');
 

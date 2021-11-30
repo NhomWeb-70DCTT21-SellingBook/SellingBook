@@ -1,0 +1,16 @@
+h3 {
+    font-size: 24px;
+    margin: 16px 0px;
+}
+.left {
+    text-align: center;
+}
+.about .right p {
+    margin: 15px 0;
+}
+.about .right td {
+    padding: 10px;
+}
+tr {
+    color: blue;
+}

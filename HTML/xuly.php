@@ -58,9 +58,15 @@
             $query = "INSERT INTO account(username,password,email) VALUES ('" . $username ."', '". $password . "', '". $email . "')";
             $result = mysqli_query($conn, $query);
             if ($result) {
-                echo 'Thêm sinh viên thành công!';
+                $query = "SELECT * FROM account WHERE username = '".$username."' ";
+                
+                $result = mysqli_query($conn,$query);
+                $row = mysqli_fetch_assoc($result);
+                $query1 = "INSERT INTO `user` (`id`, `id_tai_khoan`, `ho_ten`, `gioi_tinh`, `sdt`, `ngay_sinh`) VALUES (NULL, '".$row['id']."', '', '', '', '');";
+                mysqli_query($conn,$query1);
+                echo "Thêm tài khoản thành công! <a href='javascript: history.go(-1)'>Trở lại</a>";
             } else {
-                echo 'Thêm sinh viên không thành công!';
+                echo "Thêm tài khoản không thành công! <a href='javascript: history.go(-1)'>Trở lại</a>";
             }
         } else {
             echo 'Kết nối thất bại', mysqli_connect_errno();

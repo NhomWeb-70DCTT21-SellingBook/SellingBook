@@ -242,7 +242,10 @@
                         </form>
                     </div>
                     <?php
-                    if ($result == false) {
+                    if(isset($_GET['txt-search']) == false) {
+                        echo '<div class="active-color" style="line-height: 3rem; margin-top: 12px; height: 30vh;">Nhập mã đơn hàng</div>';
+                    }
+                    else if ($result == false) {
                         echo '<div class="active-color" style="line-height: 3rem; margin-top: 12px;">Không tồn tại đơn hàng có mã: ' . $search . '</div>';
                     } else {
                         echo '<div class="active-color" style="line-height: 3rem; margin-top: 12px;">Danh sách sản phẩm của đơn hàng có mã: ' . $search . '</div>';
@@ -253,6 +256,7 @@
                         if ($result == false) {
                         } else {
                             while ($row = mysqli_fetch_assoc($result)) {
+                                // Lấy trạng thái: 0 - Chờ xác nhận
                                 $trangthai = '';
                                 if ($row['trang_thai'] == 0) {
                                     $trangthai = 'Chờ xác nhận';
@@ -266,6 +270,8 @@
                                     $trangthai = 'Đã hủy';
                                 }
                                 $diachi = $row['so_nha'] . ', ' . $row['xa_phuong'] . ', ' . $row['quan_huyen'] . ', ' . $row['tinh_tp'];
+                                
+                                
                                 echo '<li class="app-content-body__list-item">
                                     <div class="app-content-body-list-item__info">
                                         <div class="app-content-body-list-item__img">';

@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin cửa hàng | Book Buy</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+        integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Poppins:display=swap|Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/grid.css">
+    <link rel="stylesheet" href="../assets/css/style_admin.css">
+    <link rel="stylesheet" href="../assets/css/responsive_base.css">
+    <link rel="stylesheet" href="../assets/css/responsive_admin.css">
+    <link rel="stylesheet" href="../assets/css/style_thongtincuahang.css">
+    
+</head>
+
+<body>
+    <div class="app">
+        <header class="app__header">
+            <div class="grid wide">
+                <div class="app__header-wrapper">
+                    <div class="app-header__img hide-on-moblie">
+                        <img src="../assets/images/logo-new.png" alt="logo-new" srcset="">
+                    </div>
+                    <div class="app-header__search">
+                        <span class="material-icons-outlined">search</span>
+                        <input type="text" id="txt-search" name="txt-search" placeholder="Bạn muốn tìm gì?">
+                    </div>
+                    <div href="#" class="app-header__logout">
+                        <span class="material-icons-outlined">logout</span>
+                        <a href="logout.php" class="hide-on-moblie" style="color: black; text-decoration: none;">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="app__container">
+            <div class="app-content__linker">
+                <div class="grid wide">
+                    <ul class="app-content__linker-wrapper">
+                        <li><a href="home.html"><span class="material-icons-outlined">home</span>Trang chủ</a></li>
+                        <li><a href="thongtinbandoc.php">/ Thông tin cửa hang</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col l-3 m-12 c-12">
+                        <div class="app-container__menu">
+                            <div class="app-container-menu__user">
+                                <div class="app-container-menu-user__img">
+                                    <img src="../assets/images/5ef966aae04712194b56.jpg" alt="user-image">
+                                </div>
+                                <div class="app-container-menu-user__info">
+                                    <!-- <div class="app-container-menu-user-info__name">Nguyễn Quốc Khánh</div>
+                                    <div class="app-container-menu-user-info__email">quockhanh01091@gmail.com</div> -->
+                                    <span class="app-container-menu-user-info__name" id="hoten_change">BookBuy</span>
+                                    <span class="app-container-menu-user-info__email" id="email_change">bookbuy@gmail.com</span>
+                                </div>
+                            </div>
+                            <ul class="app-container-menu__control">
+                                <li class="app-container-menu-control__item ">
+                                    <a href="thongtinbandoc.php">
+                                        <span class="material-icons-outlined">book</span>
+                                        
+                                        Thông tin bạn đọc
+                                    </a>
+                                </li>
+                                <li class="app-container-menu-control__item" >
+                                    <a href="#">
+                                        <span class="material-icons-outlined">inventory</span>
+                                        Thông báo
+                                    </a>
+                                </li>
+                                <li class="app-container-menu-control__item">
+                                    <a href="chat.html">
+                                        <span class="material-icons-outlined">question_answer</span>
+                                        Chat với khách hàng
+                                    </a>
+                                </li>
+                                <li class="app-container-menu-control__item active-color">
+                                    <a href="#">
+                                        <span class="material-icons-outlined">info</span>
+                                        Thông tin cửa hàng
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col l-9 m-12 c-12">
+                        <div class="app-container__content">
+                            <div class="right-content">
+            
+
+
+                                <div class="about">
+                                    <div class="left">
+                                        <div class="logo">
+                                            <img src="../assets/images/logo-new.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h3 class="active-color">
+                                            Giới thiệu BookBuy
+                                        </h3>
+                                        <hr>
+                                        <p style="font-size: 14px;">
+                                            Bookbuy.vn là <b>nhà sách Trực tuyến</b>, đối tác chính thức của hơn 20 công ty, nhà phát hành sách hàng đầu Việt Nam: NXB Trẻ, NXB Kim Đồng, Nhã Nam, Alphabooks, First News,...với số lượng đầu sách đồ sộ được cập nhật liên tục hàng ngày. Ngoài <b>mua sách online</b></a> tại BookBuy, bạn còn có rất nhiều lựa chọn quà tặng, văn phòng phẩm, đồ chơi, vật dụng gia đình, CD/DVD, công nghệ, thời trang với giá niêm yết luôn bằng hoặc thấp hơn giá thị trường giúp bạn tiết kiệm rất nhiều thời gian mua sắm.
+                                       </p>
+                                        <p  style="text-align: center;"><img src="../assets/images/img-introduce.jpg"></p>
+                                       <p>
+                                           <b class="active-color">Mua sắm trực tuyến</b> tại Bookbuy.vn, bạn được:
+                                       </p>
+                                        <p>&gt;&gt; Giảm giá hơn 95% sách Tiếng Việt lên đến 25%. Xem thêm Ưu đãi cho Khách hàng</p>
+                                        <p>&gt;&gt; Tích lũy BBxu</a> để có thể mua hàng 0 đồng!</p>
+                                        <p>&gt;&gt; Tận hưởng các chương trình ưu đãi, khuyến mãi lớn hàng tháng</p>
+                                        <p>&gt;&gt; Giao hàng trong vòng 48h tại TP.HCM</p>
+                                        <p>&gt;&gt; Miễn phí vận chuyển. Tìm hiểu thêm Phương thức Vận chuyển</a></p>
+                                        <p>&gt;&gt; Đổi - trả hàng miễn phí</a> trong vòng 7 ngày. </p>
+                                        <p>&gt;&gt; Thanh toán an toàn, tiện lợi: Trả tiền khi nhận hàng (COD), Chuyển khoản &amp; Internet banking, Ví điện tử, Chuyển tiền qua bưu điện.</p>
+                                        <p>&gt;&gt; Dịch vụ hậu mãi chu đáo, tận tình. Bạn cần tư vấn sản phẩm, hoặc gặp khó khăn khi đặt hàng? Gọi ngay cho chúng tôi 0933 109 009 để được trợ giúp.</p>
+                                        <p class="active-color">Bookbuy.vn tự hào được Sở Công thương TP.HCM và khách hàng bình chọn là Top 3 <b>Nhà sách Trực tuyến</b> tiêu biểu 2013 và Top 2 nhóm website TMĐT tổng hợp tiêu biểu 2014</p>
+                                        
+                                        <div style="padding: 10px 0px;">
+                                            <p><b style="font-weight: bold;">MỘT SỐ SẢN PHẨM ĐỘC ĐÁO TẠI NHÀ SÁCH BOOKBUY.VN </b></p>
+                                            <p>
+                                                </p><table style="border: 0; width: 400px;">
+                                                    <tbody><tr>
+                                                        <td>Tủ sách Điện ảnh</td>
+                                                        <td>Dụng cụ Vẽ</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Đồ chơi – Học cụ Fun IQ</td>
+                                                        <td>Dụng cụ sáng tạo</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> đi phượt – Du lịch</td>
+                                                        <td>Học sinh chân kinh</td>
+                                                    </tr>
+                                                </tbody></table>
+                                            <p></p>
+                                        </div>
+                                        
+                                        <p style="font-weight: bold;">Để được hỗ trợ tốt hơn, xin vui lòng liên hệ:</p>
+                                        <p><b>NHÀ SÁCH TRỰC TUYẾN BOOKBUY</b></p>
+                                        <p>Địa chỉ: 147 Pasteur, Phường 6, Quận 3, TP.HCM</p>
+                                        <p >Email: <a href="#" style="color: royalblue;">info@bookbuy.vn</a> </p>
+                                        <p>Điện thoại:  (08)- 38207153 (giờ hành chính) - 0933 109 009 (hotline)</p>
+                                        <p>Inbox fanpage Nhà sách trực tuyến Bookbuy:<a href="#" style="color: royalblue;"> http://facebook.com/bookbuy.vn</a></p>
+                                        <p>Chat trực tuyến trên website <a href="#" style="color: royalblue;">https://bookbuy.vn</a></p>
+                                        
+                                        <div class="cl"></div>
+                                
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                        </div>   
+                                
+                                
+                                
+                             
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <footer class="app__footer">
+            <p>Powered by <a href="https://github.com/kasisoiqk">Khanh dz 2021</a></p>
+        </footer>
+        
+    </div>
+    
+</body>
+<script src="../assets/js/main_base.js"></script>
+<script>
+    var change = document.getElementById("button_change");
+    change.onclick = function(){
+        var modal = document.querySelectorAll(".input_type_text");
+        modal.forEach(function(value){
+            value.readOnly = false;
+            
+        })
+    
+    }
+    var name = document.getElementById("ho_ten").value
+    document.getElementById("hoten_change").innerText = name;
+    var email = document.getElementById("email").value
+    document.getElementById("email_change").innerText = email;
+    
+
+</script>
+
+</html>

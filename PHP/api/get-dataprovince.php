@@ -14,6 +14,7 @@ if(mysqli_num_rows($result) > 0) {
         );
     }
 }
+
 die(json_encode($datas));
 
 ?>

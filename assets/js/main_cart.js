@@ -24,22 +24,6 @@ function getCurrentAccount() {
     }
 }
 
-// Authentication
-function getCurrentAccount() {
-    var http = new XMLHttpRequest();
-
-    http.open('GET', path + `api/get-currentaccount.php`, true);
-
-    http.send();
-
-    http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            account = JSON.parse(this.responseText);
-            loadHeader();
-        }
-    }
-}
-
 function loadHeader() {
     var headerDOM = document.querySelector('.app-header-navbar__right');
     headerDOM.innerHTML = `
@@ -128,7 +112,7 @@ function loadListCart() {
         `;
 
         document.querySelector('.app-content-cart-list-checkout__btn').style.backgroundColor = '#999';
-        document.querySelector('.app-content-cart-list-checkout__btn').style.cursor = 'default';
+        document.querySelector('.app-content-cart-list-checkout__btn').style.cursor = 'default !important';
     }
 
     document.querySelector('.app-content-cart-list-checkout-body__quantity')
@@ -142,7 +126,7 @@ function upQuantity(id) {
     var cart = carts.find(function(value) {
         return value.id == id;
     });
-
+    
     if(cart.so_luong < 1) {
         cart.so_luong = 1;
     }
@@ -215,10 +199,11 @@ function removeItem(id) {
     var cart = carts.find(function(value) {
         return value.id == id;
     });
-
+    
     carts = carts.filter(function(value) {
         return value.id != id;
     });
+
 
     showToast({
         message: 'Bạn vừa xóa sách trong giỏ hàng: ' + cart.ten_sach,
